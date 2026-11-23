@@ -3,201 +3,196 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>공장 AI 비서 (가칭) — 메일·견적·발주·현황을 아침마다 먼저 끝내 놓습니다</title>
-<meta name="description" content="중소 제조공장 전용 AI 에이전트 설치. 메일 자동 분류, 견적서·작업지시서·발주서 자동 작성과 발송, 업체 맞춤 발주·매출·매입 대시보드, 교육, 전용 PC까지.">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<title>AI 업무 자동화 컨설팅 — 메일·견적·발주·현황판을 AI 직원이 처리합니다</title>
+<meta name="description" content="중소기업·공장 전용 AI 업무 자동화 컨설팅. 메일 자동 분류, 견적서·작업지시서·발주서 자동 작성·발송, 맞춤 대시보드, 전용 AI 에이전트 설치와 교육.">
+<meta property="og:title" content="AI 업무 자동화 컨설팅">
+<meta property="og:description" content="메일 분류부터 견적서·발주서, 매출·매입 현황판까지. 우리 회사 전용 AI 직원을 설치해 드립니다.">
+<meta property="og:image" content="assets/erp_dash.jpg">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <style>
 :root{
-  --paper:#F4F1EA; --paper2:#EAE5DA; --ink:#16181A; --soft:#3A3D40; --mute:#6E6A62;
-  --line:#D6D0C3; --accent:#E8590C; --accent-ink:#B8440A; --ok:#2F7A4B;
-  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --bg:#F8FAFD; --card:#FFFFFF; --ink:#0D1738; --soft:#3B4564; --mute:#6B7491; --line:#E4E9F2;
+  --blue:#2563EB; --blue-d:#1D4ED8; --blue-l:#EAF1FF; --navy:#0D1738;
+  --r:22px; --sh:0 1px 2px rgba(13,23,56,.04),0 12px 32px -12px rgba(13,23,56,.12);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;word-break:keep-all}
-a{color:inherit}
-.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
-.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink)}
-h1,h2,h3{letter-spacing:-.025em;line-height:1.2;text-wrap:balance}
-p{text-wrap:pretty}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;word-break:keep-all}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+section{scroll-margin-top:72px}
+.kicker{display:inline-block;font-size:14px;font-weight:700;color:var(--blue);margin-bottom:12px}
+.h2{font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.25}
+.sub{font-size:clamp(16px,1.5vw,18px);color:var(--soft);margin-top:14px;max-width:40em}
+.center{text-align:center}.center .sub{margin-left:auto;margin-right:auto}
 
-/* nav */
-header{position:sticky;top:0;z-index:20;background:rgba(244,241,234,.94);border-bottom:1px solid var(--line);backdrop-filter:saturate(1.2)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-weight:800;font-size:18px;text-decoration:none;display:flex;gap:8px;align-items:center}
-.logo i{width:10px;height:10px;background:var(--accent);display:inline-block}
-.logo small{font-weight:500;color:var(--mute);font-size:12px}
-.nav ul{display:flex;gap:28px;list-style:none;font-size:15px}
-.nav ul a{text-decoration:none;color:var(--soft)}
-.nav ul a:hover{color:var(--ink)}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:6px;font-weight:700;font-size:16px;text-decoration:none;border:1.5px solid var(--ink);transition:transform .15s,background .15s}
-.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn-primary:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
-.btn-ghost:hover{background:var(--ink);color:var(--paper)}
-.nav .btn{min-height:40px;font-size:14px;padding:0 16px}
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(248,250,253,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+header.s{border-color:var(--line)}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.logo b{width:32px;height:32px;border-radius:9px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px}
+.logo span{color:var(--mute);font-weight:600;font-size:14px}
+.menu{display:flex;gap:30px;font-size:15px;font-weight:600;color:var(--soft)}
+.menu a:hover{color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 26px;border-radius:14px;font-weight:700;font-size:16px;transition:background .15s,transform .15s,box-shadow .15s}
+.btn:focus-visible{outline:3px solid #93b4ff;outline-offset:2px}
+.btn-p{background:var(--blue);color:#fff;box-shadow:0 8px 20px -8px rgba(37,99,235,.6)}
+.btn-p:hover{background:var(--blue-d);transform:translateY(-1px)}
+.btn-g{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn-g:hover{border-color:#c9d3e6}
+.nav .btn{min-height:42px;padding:0 18px;font-size:14px;border-radius:11px}
 
 /* hero */
-.hero{padding:72px 0 56px;border-bottom:1px solid var(--line)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-.hero h1{font-size:clamp(34px,5.2vw,60px);font-weight:800;margin:14px 0 20px}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero .lead{font-size:clamp(17px,1.6vw,19px);color:var(--soft);max-width:30em}
-.hero .ctas{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
-.hero .fine{margin-top:14px;font-size:13px;color:var(--mute)}
+.hero{padding:56px 0 80px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.badges span{background:#fff;border:1px solid var(--line);border-radius:99px;padding:7px 14px;font-size:13.5px;font-weight:600;color:var(--soft)}
+.hero h1{font-size:clamp(36px,5.4vw,64px);font-weight:800;letter-spacing:-.04em;line-height:1.16}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero .sub{font-size:clamp(17px,1.6vw,20px);margin-top:22px}
+.ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.trust{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:34px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--mute);font-weight:600}
+.trust span::before{content:"✓ ";color:var(--blue)}
+.hero-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+.hero-grid>*,.tg-grid>*,.gallery>*,.cbox>*,.pbox>*{min-width:0}
+.hero-visual{position:relative;padding:0 0 40px 0;align-self:center}
+.hv-browser{border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 40px 80px -30px rgba(13,23,56,.35);width:118%;max-width:none}
+.hv-browser .bar{height:30px}
+.hv-browser img{width:100%;aspect-ratio:16/10.5;object-fit:cover;object-position:top left}
+.hv-phone{position:absolute;left:-40px;bottom:-30px;width:30%;max-width:210px;z-index:2}
+.float{position:absolute;z-index:2;background:#fff;border-radius:16px;box-shadow:var(--sh);padding:12px 16px;font-size:13px;font-weight:700;display:flex;gap:10px;align-items:center}
+.float small{display:block;color:var(--mute);font-weight:500;font-size:12px}
+.float i{font-style:normal;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--blue-l);font-size:17px}
+.f1{right:-8%;bottom:4%}
 
-/* morning log (product preview) */
-.log{background:var(--ink);color:#E9E6DF;border-radius:10px;padding:22px 22px 10px;font-size:14px;box-shadow:0 1px 0 #000,0 24px 48px -28px rgba(0,0,0,.45)}
-.log-top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;color:#8C877D;margin-bottom:14px;letter-spacing:.06em}
-.log-top b{color:#E9E6DF;font-weight:600}
-.row{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:12px 0;border-top:1px solid #2B2E31}
-.row:first-of-type{border-top:0}
-.t{font-family:var(--mono);color:var(--accent);font-size:13px;padding-top:1px}
-.row strong{display:block;color:#fff;font-weight:600;margin-bottom:2px}
-.row span{color:#A9A49A;font-size:13px}
-.tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 6px;border:1px solid #4A4D50;border-radius:3px;margin-right:4px;color:#CFCAC0}
-.tag.hot{border-color:var(--accent);color:var(--accent)}
-.sample{font-family:var(--mono);font-size:10px;color:#6E6A62;text-align:right;padding:6px 0 4px}
+/* showcase */
+.show{padding:96px 0;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.browser{margin-top:44px;border-radius:18px;background:#fff;box-shadow:0 2px 4px rgba(13,23,56,.04),0 40px 80px -30px rgba(13,23,56,.35);border:1px solid var(--line);overflow:hidden}
+.bar{height:38px;background:#F1F4F9;display:flex;align-items:center;gap:7px;padding:0 16px;border-bottom:1px solid var(--line)}
+.bar i{width:11px;height:11px;border-radius:50%;background:#d5dbe6}
+.bar span{margin-left:14px;flex:0 1 340px;height:22px;border-radius:7px;background:#fff;border:1px solid var(--line);font-size:11.5px;color:var(--mute);display:flex;align-items:center;padding:0 10px}
+.cap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:16px;font-size:14px;color:var(--mute)}
+.cap b{color:var(--ink)}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:56px}
+.shot{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .2s,box-shadow .2s}
+.shot:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.shot img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top left;border-bottom:1px solid var(--line)}
+.shot div{padding:18px 22px 20px}
+.shot b{font-size:18px;font-weight:800;letter-spacing:-.02em}
+.shot p{font-size:14.5px;color:var(--soft);margin-top:4px}
+.tag{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-l);border-radius:6px;padding:2px 8px;margin-bottom:8px}
+.blurnote{margin-top:22px;font-size:13px;color:var(--mute);text-align:center}
 
-/* problem strip */
-.pain{padding:64px 0;border-bottom:1px solid var(--line)}
-.pain-grid{display:grid;grid-template-columns:280px 1fr;gap:48px}
-.pain h2{font-size:28px;font-weight:800}
-.pain ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
-.pain li{padding:16px 0;border-top:1px solid var(--line);font-size:17px;color:var(--soft)}
-.pain li b{color:var(--ink)}
+/* telegram */
+.tg{padding:110px 0}
+.tg-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center}
+.tg-grid img{width:min(380px,100%);margin:0 auto}
+.flow{margin-top:34px;display:grid;gap:14px}
+.flow div{display:grid;grid-template-columns:64px 1fr;gap:16px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;align-items:start}
+.flow em{font-style:normal;font-weight:800;color:var(--blue);font-size:15px;font-variant-numeric:tabular-nums;padding-top:2px}
+.flow b{font-size:17px;display:block}
+.flow p{font-size:14.5px;color:var(--soft)}
 
 /* services */
-.svc{padding:88px 0 40px}
-.svc-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}
-.svc-head h2{font-size:clamp(28px,3.4vw,40px);font-weight:800;margin-top:10px}
-.svc-head p{color:var(--mute);max-width:26em}
-.item{display:grid;grid-template-columns:90px 1fr 1fr;gap:32px;padding:36px 0;border-top:1.5px solid var(--ink)}
-.item:last-child{border-bottom:1.5px solid var(--ink)}
-.num{font-family:var(--mono);font-size:40px;font-weight:600;color:var(--accent);line-height:1}
-.item h3{font-size:24px;font-weight:800;margin-bottom:10px}
-.item .sum{font-size:17px;color:var(--soft)}
-.item ul{list-style:none;font-size:15px;color:var(--soft)}
-.item li{padding:9px 0 9px 20px;border-bottom:1px dashed var(--line);position:relative}
-.item li:last-child{border-bottom:0}
-.item li::before{content:"";position:absolute;left:0;top:18px;width:8px;height:2px;background:var(--accent)}
-.note{display:inline-block;margin-top:14px;font-size:13px;color:var(--accent-ink);font-weight:600}
-
-/* dashboard preview */
-.dash{padding:72px 0;background:var(--paper2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.dash-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
-.dash h2{font-size:clamp(26px,3vw,36px);font-weight:800;margin:10px 0 16px}
-.dash p{color:var(--soft);font-size:17px}
-.dash .vs{margin-top:22px;font-size:15px;color:var(--soft)}
-.dash .vs div{padding:10px 0;border-top:1px solid var(--line);display:flex;gap:12px}
-.dash .vs b{min-width:84px;color:var(--ink)}
-.board{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px;font-size:13px}
-.board-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.board-top b{font-size:15px}
-.chips{display:flex;gap:6px}
-.chips span{font-size:12px;padding:4px 10px;border-radius:99px;background:var(--paper);color:var(--soft)}
-.chips span.on{background:var(--ink);color:#fff}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
-.kpi{border:1px solid var(--line);border-radius:6px;padding:10px 12px}
-.kpi small{color:var(--mute);font-size:11px;display:block}
-.kpi b{font-size:18px;font-family:var(--mono);font-weight:600}
-.bars{display:flex;align-items:end;gap:8px;height:110px;padding:0 4px 4px;border-bottom:1px solid var(--line);margin-bottom:14px}
-.bars div{flex:1;background:var(--paper2);border-radius:3px 3px 0 0;position:relative}
-.bars div.cur{background:var(--accent)}
-table{width:100%;border-collapse:collapse}
-th{text-align:left;color:var(--mute);font-weight:500;font-size:11px;padding:6px 4px;border-bottom:1px solid var(--line)}
-td{padding:8px 4px;border-bottom:1px solid #F0ECE3}
-td.n{text-align:right;font-family:var(--mono)}
-.st{font-size:11px;padding:2px 7px;border-radius:3px;background:#E7F1EA;color:var(--ok)}
-.st.w{background:#FCEBDD;color:var(--accent-ink)}
-.board .sample{color:var(--mute)}
+.svc{padding:110px 0;background:var(--navy);color:#fff}
+.svc .h2{color:#fff}.svc .sub{color:#AEB7D3}.svc .kicker{color:#7EA6FF}
+.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:52px}
+.card{grid-column:span 2;background:#16224A;border:1px solid #24315E;border-radius:var(--r);padding:30px 28px}
+.card:nth-child(4),.card:nth-child(5){grid-column:span 3}
+.card .n{font-size:14px;font-weight:800;color:#7EA6FF}
+.card h3{font-size:21px;font-weight:800;letter-spacing:-.02em;margin:10px 0 10px;line-height:1.35}
+.card p{font-size:15px;color:#B9C2DC}
+.card ul{list-style:none;margin-top:16px;display:grid;gap:7px}
+.card li{font-size:14px;color:#D6DCEE;padding-left:18px;position:relative}
+.card li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:2px;background:#3B6FF0}
+.card .x{margin-top:16px;font-size:13px;color:#FFB86B;font-weight:600}
 
 /* process */
-.proc{padding:88px 0}
-.proc h2{font-size:clamp(28px,3.4vw,40px);font-weight:800;margin:10px 0 36px}
-.steps{display:grid;grid-template-columns:repeat(5,1fr);border-top:1.5px solid var(--ink)}
-.step{padding:22px 18px 0 0;position:relative}
-.step::before{content:"";position:absolute;top:-6px;left:0;width:10px;height:10px;background:var(--accent)}
-.step small{font-family:var(--mono);color:var(--mute);font-size:12px}
-.step h4{font-size:19px;margin:6px 0 8px;font-weight:800}
-.step p{font-size:14px;color:var(--soft)}
+.proc{padding:110px 0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:52px}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px 24px}
+.step small{font-size:13px;font-weight:800;color:var(--blue)}
+.step h4{font-size:20px;font-weight:800;margin:8px 0 8px;letter-spacing:-.02em}
+.step p{font-size:14.5px;color:var(--soft)}
 
-/* proof + pricing */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.split > div{padding:64px 48px 64px 0}
-.split > div + div{padding:64px 0 64px 48px;border-left:1px solid var(--line)}
-.split h3{font-size:26px;font-weight:800;margin:10px 0 14px}
-.split p{color:var(--soft)}
-.split ul{list-style:none;margin-top:16px}
-.split li{padding:10px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;font-size:15px}
-.split li span:last-child{color:var(--mute);text-align:right}
+/* price */
+.price{padding:0 0 110px}
+.pbox{display:grid;grid-template-columns:1fr 1fr;gap:0;background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--sh)}
+.pbox>div{padding:48px}
+.pbox>div+div{background:var(--blue-l);}
+.pbox h3{font-size:28px;font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+.pbox p{color:var(--soft)}
+.prow{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid #d3e0fb;font-size:16px;font-weight:600}
+.prow:last-child{border-bottom:0}
+.prow span:last-child{color:var(--blue-d);font-weight:800}
 
 /* faq */
-.faq{padding:88px 0}
-.faq h2{font-size:clamp(28px,3.4vw,40px);font-weight:800;margin:10px 0 28px}
-details{border-top:1px solid var(--line);padding:4px 0}
-details:last-of-type{border-bottom:1px solid var(--line)}
-summary{cursor:pointer;list-style:none;font-size:18px;font-weight:700;padding:18px 40px 18px 0;position:relative;min-height:44px}
+.faq{padding:0 0 110px}
+.qa{max-width:860px;margin:44px auto 0;display:grid;gap:12px}
+details{background:#fff;border:1px solid var(--line);border-radius:18px;padding:0 24px}
+summary{list-style:none;cursor:pointer;font-weight:700;font-size:17px;padding:22px 34px 22px 0;position:relative}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";position:absolute;right:4px;top:14px;font-size:24px;color:var(--accent);font-weight:400}
-details[open] summary::after{content:"–"}
-details p{padding:0 0 20px;color:var(--soft);max-width:46em}
+summary::after{content:"+";position:absolute;right:0;top:18px;font-size:24px;color:var(--blue);font-weight:500}
+details[open] summary::after{content:"−"}
+details p{color:var(--soft);padding:0 0 22px;font-size:15.5px}
 
 /* cta */
-.cta{background:var(--ink);color:var(--paper);padding:80px 0}
-.cta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:end}
-.cta h2{font-size:clamp(30px,4vw,48px);font-weight:800}
-.cta p{color:#A9A49A;margin-top:14px}
-.contact{display:grid;gap:10px}
-.contact a{display:flex;justify-content:space-between;align-items:center;min-height:56px;padding:0 20px;border:1px solid #3A3D40;border-radius:6px;text-decoration:none;font-weight:600}
-.contact a:hover{border-color:var(--accent)}
-.contact a.main{background:var(--accent);border-color:var(--accent)}
-.contact a span{font-family:var(--mono);font-size:13px;font-weight:400;opacity:.85}
-footer{background:var(--ink);color:#6E6A62;font-size:12px;padding:0 0 32px}
-footer .wrap{border-top:1px solid #2B2E31;padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-
-/* mobile sticky */
+.cta{padding:0 0 110px}
+.cbox{background:linear-gradient(135deg,#1E4FD8,#2563EB 55%,#3B82F6);border-radius:32px;padding:64px 56px;color:#fff;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.cbox h2{font-size:clamp(28px,3.4vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1.25}
+.cbox p{color:#DCE7FF;margin-top:12px}
+.clist{display:grid;gap:10px}
+.clist a{display:flex;justify-content:space-between;align-items:center;min-height:58px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:0 20px;font-weight:700}
+.clist a:first-child{background:#fff;color:var(--blue-d)}
+.clist a span{font-weight:500;font-size:14px;opacity:.85}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .mbar{display:none}
 
-@media (max-width:960px){
-  .nav ul{display:none}
-  .hero{padding:40px 0 40px}
-  .hero-grid,.dash-grid,.cta-grid{grid-template-columns:1fr;gap:36px}
-  .pain-grid{grid-template-columns:1fr;gap:20px}
-  .pain ul{grid-template-columns:1fr}
-  .svc{padding:64px 0 24px}
-  .svc-head{flex-direction:column;align-items:start}
-  .item{grid-template-columns:1fr;gap:12px;padding:28px 0}
-  .num{font-size:28px}
-  .kpis{grid-template-columns:repeat(2,1fr)}
-  .steps{grid-template-columns:1fr;border-top:0;border-left:1.5px solid var(--ink);margin-left:5px}
-  .step{padding:0 0 26px 24px}
-  .step::before{top:6px;left:-6px}
-  .split{grid-template-columns:1fr}
-  .split > div,.split > div + div{padding:48px 0;border-left:0}
-  .split > div + div{border-top:1px solid var(--line)}
-  .proc,.faq{padding:64px 0}
-  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(244,241,234,.97);border-top:1px solid var(--line)}
-  .mbar .btn{flex:1;font-size:15px}
-  body{padding-bottom:76px}
+@media (max-width:1000px){
+  .menu{display:none}
+  .hero{padding:28px 0 64px}
+  .hero-grid,.tg-grid,.cbox,.pbox{grid-template-columns:minmax(0,1fr)}
+  .hero-visual{margin-top:12px}
+  .hv-browser{width:100%}.hv-phone{left:-6px;width:42%}.f1{right:0;bottom:0}
+  .gallery{grid-template-columns:1fr;gap:18px;margin-top:36px}
+  .cards{grid-template-columns:1fr}
+  .card,.card:nth-child(4),.card:nth-child(5){grid-column:auto}
+  .steps{grid-template-columns:1fr 1fr}
+  .show,.tg,.svc,.proc{padding:72px 0}
+  .tg-grid{gap:40px}
+  .pbox>div{padding:32px 24px}
+  .cbox{padding:40px 24px;border-radius:24px}
+  .price,.faq,.cta{padding-bottom:72px}
   .nav .btn{display:none}
+  .mbar{display:flex;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line)}
+  .mbar .btn{flex:1;min-height:50px;font-size:15px}
+  body{padding-bottom:80px}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+@media (max-width:560px){
+  .steps{grid-template-columns:1fr}
+  .float{font-size:12px;padding:9px 12px}.float i{width:28px;height:28px;font-size:14px}
+  .bar span{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 
-<header>
+<header id="hd">
   <div class="wrap nav">
-    <a class="logo" href="#top"><i></i>공장 AI 비서 <small>(가칭)</small></a>
-    <ul>
-      <li><a href="#services">서비스</a></li>
-      <li><a href="#dashboard">현황판</a></li>
-      <li><a href="#process">도입 절차</a></li>
-      <li><a href="#price">비용</a></li>
-      <li><a href="#faq">자주 묻는 질문</a></li>
-    </ul>
-    <a class="btn btn-primary" href="#contact">도입 상담</a>
+    <a class="logo" href="#top"><b>M</b>AI 업무 자동화 <span>컨설팅</span></a>
+    <nav class="menu">
+      <a href="#screens">실제 화면</a>
+      <a href="#telegram">메일 자동화</a>
+      <a href="#services">서비스</a>
+      <a href="#process">진행 방식</a>
+      <a href="#price">비용</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-p" href="#contact">무료 상담 신청</a>
   </div>
 </header>
 
@@ -206,186 +201,149 @@ footer .wrap{border-top:1px solid #2B2E31;padding-top:20px;display:flex;justify-
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <p class="eyebrow">중소 제조공장 전용 AI 에이전트</p>
-      <h1>사무실 일은<br><em>출근 전에</em> 끝나 있습니다</h1>
-      <p class="lead">메일 분류, 견적서·작업지시서·발주서 작성과 발송, 발주·매출·매입 현황까지. 공장마다 전용 AI 에이전트를 설치해 매일 반복되는 사무 업무를 대신 처리합니다.</p>
-      <div class="ctas">
-        <a class="btn btn-primary" href="#contact">무료 현장 진단 신청</a>
-        <a class="btn btn-ghost" href="#services">무엇을 해주나요</a>
+      <div class="badges">
+        <span>🏭 중소기업·공장 전용</span><span>📬 매일 아침 자동 보고</span><span>🖥 전용 PC 설치</span><span>🎓 AI 교육 포함</span>
       </div>
-      <p class="fine">포장재 제조공장에서 실제 운영 중인 구성을 그대로 설치합니다.</p>
+      <h1>사무실 반복 업무,<br><em>AI 직원</em>이 먼저<br>끝내 놓습니다</h1>
+      <p class="sub">메일 분류부터 견적서·작업지시서·발주서 작성과 발송, 거래처별 매출·매입 현황판까지. 우리 회사 업무에 맞춘 AI 에이전트를 설계하고 설치해 드리는 업무 자동화 컨설팅입니다.</p>
+      <div class="ctas">
+        <a class="btn btn-p" href="#contact">무료 업무 진단 받기 →</a>
+        <a class="btn btn-g" href="#screens">실제 화면 보기</a>
+      </div>
+      <div class="trust"><span>사내 ERP 직접 구축·운영</span><span>광고주 대시보드 운영 중</span><span>제조공장 설치 사례</span></div>
     </div>
-
-    <div class="log" aria-label="에이전트 아침 보고 화면 예시">
-      <div class="log-top"><b>오늘 아침 에이전트 보고</b><span>TELEGRAM · 화면 예시</span></div>
-      <div class="row"><div class="t">07:00</div><div><strong>밤사이 메일 23통 분류 완료</strong><span><em class="tag hot">발주 4</em><em class="tag">견적요청 3</em><em class="tag">세금계산서 6</em><em class="tag">기타 10</em></span></div></div>
-      <div class="row"><div class="t">07:05</div><div><strong>견적서 3건 초안 작성</strong><span>요청 메일의 품목·수량으로 작성 → 확인 버튼만 누르면 발송</span></div></div>
-      <div class="row"><div class="t">07:10</div><div><strong>발주 4건 → 작업지시서 4장 생성</strong><span>품목·규격·납기 자동 입력, 현장 출력용 PDF</span></div></div>
-      <div class="row"><div class="t">08:30</div><div><strong>오늘 작업·납기 요약 보고</strong><span>이번 주 납기 7건 중 2건 지연 위험 표시</span></div></div>
-      <div class="sample">※ 이해를 돕기 위한 예시 화면입니다</div>
+    <div class="hero-visual">
+      <div class="hv-browser"><div class="bar"><i></i><i></i><i></i></div><img src="assets/erp_dash.jpg" alt="실제 운영 중인 경영 대시보드 (수치 블러 처리)" width="1440" height="900"></div>
+      <img class="hv-phone" src="assets/tg_mail.png" alt="텔레그램으로 메일 분류 결과를 보고하는 AI 에이전트 예시" width="800" height="1696">
+      <div class="float f1"><i>📬</i><div>메일 23통 분류 완료<small>오전 7:00 자동 보고</small></div></div>
     </div>
   </div>
 </section>
 
-<section class="pain">
-  <div class="wrap pain-grid">
-    <h2>이런 일에<br>매일 시간을 쓰고 있다면</h2>
-    <ul>
-      <li><b>아침마다 메일함</b>을 열어 발주·견적·계산서를 손으로 골라낸다</li>
-      <li>같은 양식의 <b>견적서·작업지시서</b>를 엑셀로 매번 다시 만든다</li>
-      <li>거래처별 <b>발주·매출·매입</b>을 보려면 프로그램을 여러 번 뒤진다</li>
-      <li>AI를 쓰고 싶어도 <b>누가 설치하고 가르쳐 줄지</b> 막막하다</li>
-    </ul>
+<section class="show" id="screens">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker">실제 화면</span>
+      <h2 class="h2">말이 아니라, 지금 실제로 쓰고 있는 화면입니다</h2>
+      <p class="sub">저희 회사 경영 ERP와 광고주 성과 대시보드를 직접 만들어 매일 운영하고 있습니다. 같은 방식으로 귀사에 맞는 현황판을 만들어 드립니다.</p>
+    </div>
+
+    <div class="browser">
+      <div class="bar"><i></i><i></i><i></i><span>erp · 전사 대시보드</span></div>
+      <img src="assets/erp_dash.jpg" alt="사내 경영 ERP 전사 대시보드 (수치 블러 처리)" width="1440" height="900" loading="lazy">
+    </div>
+    <div class="cap"><span><b>경영 ERP · 전사 대시보드</b> — 거래처 수, 월별 매출·지출, 목표 달성률, 현금흐름을 한 화면에</span><span>※ 수치는 블러 처리</span></div>
+
+    <div class="gallery">
+      <article class="shot"><img src="assets/erp_deals.jpg" alt="ERP 거래 관리 화면" loading="lazy"><div><span class="tag">경영 ERP</span><br><b>거래 관리</b><p>거래별 매출·외주비·마진율·세금계산서 발행 상태를 팀별로 관리</p></div></article>
+      <article class="shot"><img src="assets/dr_report.jpg" alt="광고 성과 보고서 대시보드" loading="lazy"><div><span class="tag">광고주 대시보드</span><br><b>성과 보고서 자동 집계</b><p>전월 대비·주차별·매체별 실적을 매일 자동으로 모아 엑셀 양식 그대로</p></div></article>
+      <article class="shot"><img src="assets/dr_media.jpg" alt="매체별 성과 대시보드" loading="lazy"><div><span class="tag">광고주 대시보드</span><br><b>매체별 목표 대비 현황</b><p>매체마다 계획 대비 노출·클릭·전환·CPA를 카드로 한눈에</p></div></article>
+      <article class="shot"><img src="assets/dr_homeshop.jpg" alt="홈쇼핑 편성 모니터링 화면" loading="lazy"><div><span class="tag">자동 수집</span><br><b>홈쇼핑 편성 모니터링</b><p>하루 2회 자동 수집, 오늘·내일 방송을 먼저 알려줌</p></div></article>
+      <article class="shot" style="grid-column:1/-1"><img src="assets/dr_comp.jpg" alt="경쟁사 광고 수집 화면" loading="lazy" style="aspect-ratio:21/8"><div><span class="tag">자동 수집</span><br><b>경쟁사 광고 자동 수집</b><p>경쟁사 검색어로 메타 광고 라이브러리를 매일 아침 수집·정리</p></div></article>
+    </div>
+    <p class="blurnote">※ 고객사 보호를 위해 수치·상품명·거래처명은 블러 처리했습니다.</p>
+  </div>
+</section>
+
+<section class="tg" id="telegram">
+  <div class="wrap tg-grid">
+    <img src="assets/tg_mail.png" alt="텔레그램 AI 비서 메일 분류 예시" loading="lazy">
+    <div>
+      <span class="kicker">메일 자동화</span>
+      <h2 class="h2">출근하면 휴대폰에<br>정리가 끝나 있습니다</h2>
+      <p class="sub">AI 에이전트가 밤사이 들어온 메일을 읽고, 분류하고, 필요한 문서까지 만들어 텔레그램으로 보고합니다. 대표님은 확인 버튼만 누르면 됩니다.</p>
+      <div class="flow">
+        <div><em>07:00</em><span><b>메일 자동 분류</b><p>발주·견적 요청·세금계산서·기타로 나누고 첨부파일은 폴더에 저장</p></span></div>
+        <div><em>07:05</em><span><b>견적서·작업지시서 초안</b><p>메일 속 품목·수량·납기로 우리 회사 양식 문서 자동 작성</p></span></div>
+        <div><em>07:12</em><span><b>말로 지시, 바로 발송</b><p>"B사 5% 할인해서 보내줘" 한 줄이면 수정 후 거래처로 발송</p></span></div>
+      </div>
+      <p style="margin-top:14px;font-size:13px;color:var(--mute)">※ 예시 화면입니다. 분류 기준과 보고 시간은 업체별로 설정합니다.</p>
+    </div>
   </div>
 </section>
 
 <section class="svc" id="services">
   <div class="wrap">
-    <div class="svc-head">
-      <div>
-        <p class="eyebrow">Services</p>
-        <h2>다섯 가지를 한 번에 설치합니다</h2>
-      </div>
-      <p>필요한 항목만 골라 도입할 수도 있습니다. 업체 양식과 거래처에 맞춰 설정합니다.</p>
-    </div>
-
-    <article class="item">
-      <div class="num">01</div>
-      <div><h3>매일 아침 메일 자동 분류</h3><p class="sum">밤사이 들어온 메일을 발주·견적 요청·세금계산서·클레임 등으로 나누고, 급한 것부터 정리해 휴대폰으로 보고합니다.</p></div>
-      <ul><li>업체가 정한 분류 기준과 거래처 목록 반영</li><li>첨부파일(발주서·도면·계산서) 자동 저장</li><li>답장이 필요한 메일만 따로 표시</li></ul>
-    </article>
-
-    <article class="item">
-      <div class="num">02</div>
-      <div><h3>견적서·작업지시서·발주서 자동 작성과 발송</h3><p class="sum">메일 속 품목·수량·납기를 읽어 우리 회사 양식으로 문서를 만들고, 확인 한 번으로 거래처에 메일을 보냅니다.</p></div>
-      <ul><li>기존 엑셀·한글 양식 그대로 사용</li><li>단가표 기준 금액 자동 계산</li><li>발송 전 담당자 확인 단계 유지</li></ul>
-    </article>
-
-    <article class="item">
-      <div class="num">03</div>
-      <div><h3>업체 맞춤 발주·주문·매출·매입 현황판</h3><p class="sum">별도 회계 프로그램(예: 얼마에요) 없이도 거래처별 발주·주문·매출·매입을 한 화면에서 봅니다.</p></div>
-      <ul><li>업체가 보는 항목·거래처 구분대로 설계</li><li>메일·문서 데이터가 자동으로 쌓임</li><li>PC·휴대폰에서 확인</li></ul>
-    </article>
-
-    <article class="item">
-      <div class="num">04</div>
-      <div><h3>업체 전용 에이전트 설치 + 기본 AI 교육</h3><p class="sum">우리 회사만 쓰는 AI 에이전트를 설치하고, 직원들이 말로 일을 시키는 방법을 현장에서 가르칩니다.</p></div>
-      <ul><li>업체 전용 계정·메신저 봇 연결</li><li>대표·사무직 대상 기본 AI 활용 교육</li><li>설치 후 운영 문의 대응</li></ul>
-    </article>
-
-    <article class="item">
-      <div class="num">05</div>
-      <div><h3>전용 PC와 모니터 제공</h3><p class="sum">에이전트가 24시간 일할 전용 PC를 준비해 설치까지 마칩니다. 맥미니 또는 윈도우 미니PC 중 업체 환경에 맞춰 고릅니다.</p></div>
-      <ul><li>맥미니 / 윈도우 미니PC + 모니터</li><li>기존 공유 폴더·프린터 연결</li><li>항상 켜져 있도록 전원·절전 설정</li></ul>
-      <span class="note">※ 장비 비용은 견적과 별도로 실비 청구합니다</span>
-    </article>
-  </div>
-</section>
-
-<section class="dash" id="dashboard">
-  <div class="wrap dash-grid">
-    <div>
-      <p class="eyebrow">Dashboard</p>
-      <h2>거래처별 숫자를<br>한 화면에서</h2>
-      <p>메일과 문서에서 자동으로 모인 데이터로, 우리 공장이 실제로 보는 항목만 담은 현황판을 만들어 드립니다.</p>
-      <div class="vs">
-        <div><b>지금</b><span>프로그램 여러 개를 열어 거래처마다 따로 조회</span></div>
-        <div><b>도입 후</b><span>휴대폰에서 거래처·기간만 골라 바로 확인</span></div>
-      </div>
-    </div>
-    <div class="board" aria-label="현황판 화면 예시">
-      <div class="board-top"><b>11월 거래 현황</b><div class="chips"><span class="on">전체</span><span>거래처별</span><span>품목별</span></div></div>
-      <div class="kpis">
-        <div class="kpi"><small>발주</small><b>○○건</b></div>
-        <div class="kpi"><small>주문</small><b>○○건</b></div>
-        <div class="kpi"><small>매출</small><b>○,○○○만</b></div>
-        <div class="kpi"><small>매입</small><b>○,○○○만</b></div>
-      </div>
-      <div class="bars" aria-hidden="true">
-        <div style="height:46%"></div><div style="height:58%"></div><div style="height:52%"></div><div style="height:66%"></div><div style="height:61%"></div><div style="height:74%"></div><div class="cur" style="height:82%"></div>
-      </div>
-      <table>
-        <tr><th>거래처</th><th>품목</th><th style="text-align:right">수량</th><th>납기</th><th>상태</th></tr>
-        <tr><td>A사</td><td>골판지 박스</td><td class="n">○,○○○</td><td>11/26</td><td><span class="st">생산 중</span></td></tr>
-        <tr><td>B사</td><td>인쇄 패키지</td><td class="n">○○○</td><td>11/25</td><td><span class="st w">납기 임박</span></td></tr>
-        <tr><td>C사</td><td>완충재</td><td class="n">○,○○○</td><td>11/29</td><td><span class="st">발주 확인</span></td></tr>
-      </table>
-      <div class="sample">※ 화면 예시 · 실제 항목은 업체별로 설계합니다</div>
+    <span class="kicker">서비스</span>
+    <h2 class="h2">업무 진단부터 장비·교육까지<br>한 번에 맡기세요</h2>
+    <p class="sub">필요한 항목만 골라 도입할 수 있습니다.</p>
+    <div class="cards">
+      <div class="card"><span class="n">01</span><h3>매일 아침<br>메일 분류 자동화</h3><p>밤사이 메일을 업무별로 분류해 급한 것부터 보고합니다.</p><ul><li>업체별 분류 기준·거래처 반영</li><li>첨부파일 자동 저장</li></ul></div>
+      <div class="card"><span class="n">02</span><h3>견적서·작업지시서·발주서<br>자동 생성 및 발송</h3><p>메일 내용으로 우리 양식 문서를 만들고 메일로 보냅니다.</p><ul><li>기존 엑셀·한글 양식 그대로</li><li>발송 전 확인 단계 유지</li></ul></div>
+      <div class="card"><span class="n">03</span><h3>업체 맞춤<br>현황 대시보드</h3><p>별도 프로그램 없이 발주·주문·매출·매입을 한 화면에서.</p><ul><li>거래처·품목별 조회</li><li>PC·휴대폰 확인</li></ul></div>
+      <div class="card"><span class="n">04</span><h3>전용 AI 에이전트 설치 + 기본 AI 교육</h3><p>우리 회사만 쓰는 AI 에이전트를 설치하고, 대표와 직원이 직접 일을 시킬 수 있도록 현장에서 교육합니다.</p><ul><li>업체 전용 계정·텔레그램 봇 연결</li><li>대표·사무직 대상 AI 활용 교육</li></ul></div>
+      <div class="card"><span class="n">05</span><h3>전용 PC·모니터 제공</h3><p>AI 직원이 24시간 일할 맥미니(윈도우 환경은 미니PC)와 모니터를 준비해 설치까지 마칩니다.</p><ul><li>기존 공유 폴더·프린터 연결</li><li>상시 가동 전원·절전 설정</li></ul><p class="x">※ 장비 비용은 컨설팅 견적과 별도 실비 청구</p></div>
     </div>
   </div>
 </section>
 
 <section class="proc" id="process">
   <div class="wrap">
-    <p class="eyebrow">Process</p>
-    <h2>도입은 이렇게 진행됩니다</h2>
+    <div class="center">
+      <span class="kicker">진행 방식</span>
+      <h2 class="h2">진단에서 운영까지 4단계</h2>
+    </div>
     <div class="steps">
-      <div class="step"><small>STEP 1</small><h4>상담</h4><p>현재 메일·문서·관리 방식과 원하는 자동화 범위를 듣습니다.</p></div>
-      <div class="step"><small>STEP 2</small><h4>현장 진단</h4><p>공장을 방문해 PC·네트워크·양식·거래처 구조를 확인하고 견적을 드립니다.</p></div>
-      <div class="step"><small>STEP 3</small><h4>설치·연동</h4><p>전용 PC에 에이전트를 설치하고 메일·양식·공유 폴더를 연결합니다.</p></div>
-      <div class="step"><small>STEP 4</small><h4>교육</h4><p>대표와 사무 담당자에게 사용법과 기본 AI 활용법을 교육합니다.</p></div>
-      <div class="step"><small>STEP 5</small><h4>운영 지원</h4><p>실제 업무에 쓰면서 나오는 수정 요청을 반영합니다.</p></div>
+      <div class="step"><small>STEP 1</small><h4>업무 진단</h4><p>방문해서 메일·문서·관리 방식을 보고 자동화할 업무 순서를 정합니다.</p></div>
+      <div class="step"><small>STEP 2</small><h4>설계·견적</h4><p>업체 양식과 거래처 구조에 맞춘 자동화 설계안과 견적을 드립니다.</p></div>
+      <div class="step"><small>STEP 3</small><h4>설치·교육</h4><p>전용 PC에 에이전트를 설치하고 메일·폴더를 연결한 뒤 사용법을 교육합니다.</p></div>
+      <div class="step"><small>STEP 4</small><h4>운영 지원</h4><p>실제 업무에 쓰면서 나오는 수정 요청을 반영해 안정화합니다.</p></div>
     </div>
   </div>
 </section>
 
-<section class="wrap" id="price">
-  <div class="split">
+<section class="price" id="price">
+  <div class="wrap pbox">
     <div>
-      <p class="eyebrow">Reference</p>
-      <h3>이미 공장에서 돌아가고 있습니다</h3>
-      <p>포장재 제조공장 한 곳에 사무 PC 여러 대와 공유 폴더, 메신저 보고까지 연결해 실제 운영 중입니다. 같은 구성을 업체 상황에 맞춰 설치합니다.</p>
-      <p style="margin-top:12px;font-size:13px;color:var(--mute)">현장 방문 상담 시 운영 화면을 직접 보여드립니다.</p>
+      <span class="kicker">비용</span>
+      <h3>업무 진단 후 맞춤 견적</h3>
+      <p>회사마다 메일 양, 문서 양식, 거래처 수가 달라 무료 진단으로 범위를 확인한 뒤 견적을 드립니다.</p>
     </div>
     <div>
-      <p class="eyebrow">Pricing</p>
-      <h3>현장 진단 후 맞춤 견적</h3>
-      <p>공장마다 메일 양, 양식, 거래처 수가 달라 범위를 확인한 뒤 견적을 드립니다.</p>
-      <ul>
-        <li><span>설치·연동·현황판 구축</span><span>견적</span></li>
-        <li><span>기본 AI 교육</span><span>견적에 포함</span></li>
-        <li><span>전용 PC·모니터</span><span>실비 별도</span></li>
-        <li><span>AI 사용료</span><span>사용량에 따라 별도</span></li>
-      </ul>
+      <div class="prow"><span>업무 진단</span><span>무료</span></div>
+      <div class="prow"><span>자동화 설계·설치·대시보드</span><span>견적</span></div>
+      <div class="prow"><span>기본 AI 교육</span><span>견적 포함</span></div>
+      <div class="prow"><span>전용 PC·모니터</span><span>실비 별도</span></div>
+      <div class="prow"><span>AI 사용료</span><span>사용량별 별도</span></div>
     </div>
   </div>
 </section>
 
 <section class="faq" id="faq">
   <div class="wrap">
-    <p class="eyebrow">FAQ</p>
-    <h2>자주 묻는 질문</h2>
-    <details><summary>컴퓨터를 잘 몰라도 쓸 수 있나요?</summary><p>메신저로 말하듯 요청하면 됩니다. 설치와 설정은 저희가 하고, 사용법은 현장 교육으로 알려드립니다.</p></details>
-    <details><summary>얼마에요 같은 기존 프로그램을 쓰고 있어도 되나요?</summary><p>기존 프로그램은 그대로 쓰셔도 되고, 현황판으로 대체하셔도 됩니다. 기존 데이터를 옮겨야 하는지는 현장 진단 때 확인해 안내드립니다.</p></details>
-    <details><summary>윈도우 PC만 있는데 가능한가요?</summary><p>가능합니다. 윈도우 환경이면 윈도우 미니PC로, 그 외에는 맥미니로 구성합니다. 기존 공유 폴더와 프린터도 연결합니다.</p></details>
-    <details><summary>메일을 AI가 마음대로 보내지는 않나요?</summary><p>거래처로 나가는 메일과 문서는 담당자가 확인 버튼을 눌러야 발송되도록 설정하는 것이 기본입니다. 자동 발송 범위는 업체가 정합니다.</p></details>
-    <details><summary>회사 자료는 안전한가요?</summary><p>에이전트는 업체 전용 PC와 전용 계정으로 따로 운영되며, 다른 업체와 섞이지 않습니다. 문서 작성 시 AI 서비스로 내용이 전송되는 구조와 보안 설정은 상담 때 자세히 설명드립니다.</p></details>
+    <div class="center"><span class="kicker">FAQ</span><h2 class="h2">자주 묻는 질문</h2></div>
+    <div class="qa">
+      <details><summary>컴퓨터를 잘 몰라도 쓸 수 있나요?</summary><p>텔레그램으로 말하듯 요청하면 됩니다. 설치와 설정은 저희가 하고, 사용법은 현장 교육으로 알려드립니다.</p></details>
+      <details><summary>얼마에요 같은 기존 프로그램은 어떻게 하나요?</summary><p>그대로 쓰셔도 되고 대시보드로 대체하셔도 됩니다. 기존 데이터 이전이 필요한지는 진단 때 확인해 안내드립니다.</p></details>
+      <details><summary>윈도우 PC만 있어도 되나요?</summary><p>가능합니다. 윈도우 환경이면 미니PC로, 그 외에는 맥미니로 구성하고 기존 공유 폴더·프린터도 연결합니다.</p></details>
+      <details><summary>AI가 메일을 마음대로 보내지는 않나요?</summary><p>거래처로 나가는 메일과 문서는 담당자가 확인 버튼을 눌러야 발송되도록 설정하는 것이 기본입니다. 자동 발송 범위는 업체가 정합니다.</p></details>
+      <details><summary>회사 자료는 안전한가요?</summary><p>에이전트는 업체 전용 PC와 전용 계정으로 따로 운영됩니다. 문서 작성 시 AI 서비스로 내용이 전송되는 구조와 보안 설정은 상담 때 자세히 설명드립니다.</p></details>
+    </div>
   </div>
 </section>
 
 <section class="cta" id="contact">
-  <div class="wrap cta-grid">
-    <div>
-      <p class="eyebrow" style="color:var(--accent)">Contact</p>
-      <h2>우리 공장에도 될지,<br>먼저 진단받아 보세요</h2>
-      <p>방문 진단은 무료입니다. 현재 업무 방식을 듣고 자동화할 수 있는 범위부터 알려드립니다.</p>
-    </div>
-    <div class="contact">
-      <a class="main" href="tel:010-0000-0000">전화 상담 <span>010-○○○○-○○○○</span></a>
-      <a href="#">카카오톡 문의 <span>@○○○○</span></a>
-      <a href="mailto:contact@example.com">이메일 문의 <span>○○○@○○○.○○</span></a>
+  <div class="wrap">
+    <div class="cbox">
+      <div>
+        <h2>우리 회사는 어디부터<br>자동화할 수 있을까요?</h2>
+        <p>방문 업무 진단은 무료입니다. 지금 하시는 일을 듣고 자동화 순서부터 알려드립니다.</p>
+      </div>
+      <div class="clist">
+        <a href="tel:010-0000-0000">전화 상담 <span>010-○○○○-○○○○</span></a>
+        <a href="#">카카오톡 문의 <span>@○○○○</span></a>
+        <a href="mailto:contact@example.com">이메일 문의 <span>○○○@○○○</span></a>
+      </div>
     </div>
   </div>
 </section>
 </main>
 
-<footer>
-  <div class="wrap"><span>공장 AI 비서 (가칭) · 상호 ○○○ · 사업자등록번호 ○○○-○○-○○○○○</span><span>© 2026</span></div>
-</footer>
+<footer><div class="wrap"><span>AI 업무 자동화 컨설팅 · 상호 ○○○ · 사업자등록번호 ○○○-○○-○○○○○</span><span>© 2026</span></div></footer>
 
-<div class="mbar">
-  <a class="btn btn-ghost" href="tel:010-0000-0000">전화</a>
-  <a class="btn btn-primary" href="#contact">무료 진단 신청</a>
-</div>
+<div class="mbar"><a class="btn btn-g" href="tel:010-0000-0000">전화</a><a class="btn btn-p" href="#contact">무료 진단 신청</a></div>
+<script>
+const hd=document.getElementById('hd');addEventListener('scroll',()=>hd.classList.toggle('s',scrollY>8),{passive:true});
+</script>
 </body>
 </html>
