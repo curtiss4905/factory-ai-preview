@@ -414,7 +414,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <h2 class="h2">진단에서 운영까지 4단계</h2>
     </div>
     <div class="steps">
-      <div class="step"><small>STEP 1</small><h4>업무 진단</h4><p>이메일·카카오톡·전화 상담으로 메일·문서·관리 방식을 듣고 자동화할 업무 순서를 정합니다.</p></div>
+      <div class="step"><small>STEP 1</small><h4>업무 진단</h4><p>실시간 채팅·이메일 상담으로 메일·문서·관리 방식을 듣고 자동화할 업무 순서를 정합니다.</p></div>
       <div class="step"><small>STEP 2</small><h4>설계·견적</h4><p>업체 양식과 거래처 구조에 맞춘 자동화 설계안과 견적을 드립니다.</p></div>
       <div class="step"><small>STEP 3</small><h4>설치·교육</h4><p>전용 PC에 에이전트를 설치하고 메일·폴더를 연결한 뒤 사용법을 교육합니다.</p></div>
       <div class="step"><small>STEP 4</small><h4>운영 지원</h4><p>실제 업무에 쓰면서 나오는 수정 요청을 반영해 안정화합니다.</p></div>
@@ -430,7 +430,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <p>회사마다 메일 양, 문서 양식, 거래처 수가 달라 업무 진단 상담으로 범위를 확인한 뒤 견적을 드립니다.</p>
     </div>
     <div>
-      <div class="prow"><span>업무 진단</span><span>이메일·카카오톡·유선 상담</span></div>
+      <div class="prow"><span>업무 진단</span><span>실시간 채팅·이메일 상담</span></div>
       <div class="prow"><span>자동화 대시보드</span><span>견적</span></div>
       <div class="prow"><span>기본 AI 교육</span><span>견적 포함</span></div>
       <div class="prow"><span>AI 사용료<small class="pnote">사용량별 별도 · 기본 Pro 모델 구입 시 월 3~5만 원 내외</small></span><span>소비자 부담</span></div>
@@ -456,22 +456,20 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="cbox">
       <div>
         <h2>우리 회사는 어디부터<br>자동화할 수 있을까요?</h2>
-        <p>이메일·카카오톡·전화로 편하게 문의하세요. 지금 하시는 일을 듣고 자동화 순서부터 알려드립니다.</p>
+        <p>실시간 채팅이나 이메일로 편하게 문의하세요. 지금 하시는 일을 듣고 자동화 순서부터 알려드립니다.</p>
       </div>
       <div class="clist">
         <a href="#contact" data-chat class="chatbtn">💬 실시간 채팅 상담 <span>바로 연결</span></a>
-        <a href="tel:010-2507-4905">전화 상담 <span>010-2507-4905</span></a>
-        <a href="#" id="kakao">카카오톡 문의 <span>ID: dhdnrj12</span></a>
-        <a href="mailto:dhdnrj12@naver.com">이메일 문의 <span>dhdnrj12@naver.com</span></a>
+        <a href="mailto:dhdnrj12@naver.com?subject=%5BAI%20%EC%97%85%EB%AC%B4%20%EC%9E%90%EB%8F%99%ED%99%94%5D%20%EC%83%81%EB%8B%B4%20%EB%AC%B8%EC%9D%98">이메일 문의 <span>dhdnrj12@naver.com</span></a>
       </div>
     </div>
   </div>
 </section>
 </main>
 
-<footer><div class="wrap"><span>AI 업무 자동화 컨설팅 · 전화 010-2507-4905 · 이메일 dhdnrj12@naver.com</span><span>© 2026</span></div></footer>
+<footer><div class="wrap"><span>AI 업무 자동화 컨설팅 · 이메일 dhdnrj12@naver.com</span><span>© 2026</span></div></footer>
 
-<div class="mbar"><a class="btn btn-g" href="tel:010-2507-4905">전화 상담</a><a class="btn btn-p" href="#contact" data-chat>💬 채팅 상담</a></div>
+<div class="mbar"><a class="btn btn-g" href="mailto:dhdnrj12@naver.com?subject=%5BAI%20%EC%97%85%EB%AC%B4%20%EC%9E%90%EB%8F%99%ED%99%94%5D%20%EC%83%81%EB%8B%B4%20%EB%AC%B8%EC%9D%98">메일 문의</a><a class="btn btn-p" href="#contact" data-chat>💬 채팅 상담</a></div>
 <script>
 (()=>{const S=[...document.querySelectorAll('.sl')],D=[...document.querySelectorAll('.dot')],box=document.getElementById('slider');let i=0,tm;
 function go(n){i=(n+S.length)%S.length;S.forEach((s,k)=>s.classList.toggle('on',k===i));D.forEach((d,k)=>{d.classList.toggle('on',k===i);});D[i].querySelector('i').replaceWith(Object.assign(document.createElement('i')));reset();}
@@ -484,8 +482,7 @@ let x0=null;box.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{pass
 box.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>45)go(i+(dx<0?1:-1));x0=null;},{passive:true});
 reset();})();
 
-const hd=document.getElementById('hd');document.getElementById('kakao').addEventListener('click',e=>{e.preventDefault();navigator.clipboard&&navigator.clipboard.writeText('dhdnrj12');alert('카카오톡 ID "dhdnrj12"가 복사되었습니다.\n카카오톡 > 친구 추가 > ID로 추가에서 붙여넣어 주세요.');});
-addEventListener('scroll',()=>hd.classList.toggle('s',scrollY>8),{passive:true});
+const hd=document.getElementById('hd');addEventListener('scroll',()=>hd.classList.toggle('s',scrollY>8),{passive:true});
 </script>
 <script>
 (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
