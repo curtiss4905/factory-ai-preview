@@ -147,6 +147,7 @@ details p{color:var(--soft);padding:0 0 22px;font-size:15.5px}
 .clist{display:grid;gap:10px}
 .clist a{display:flex;justify-content:space-between;align-items:center;min-height:58px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:0 20px;font-weight:700}
 .clist a:first-child{background:#fff;color:var(--blue-d)}
+.mbar{padding-right:84px!important}
 .clist a span{font-weight:500;font-size:14px;opacity:.85}
 footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13px;color:var(--mute)}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -271,7 +272,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a href="#price">비용</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn-p" href="#contact">상담 신청</a>
+    <a class="btn btn-p" href="#contact" data-chat>💬 채팅 상담</a>
   </div>
 </header>
 
@@ -324,7 +325,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </div>
     </div>
     <div class="ctas">
-      <a class="btn btn-p" href="#contact">업무 진단 상담받기 →</a>
+      <a class="btn btn-p" href="#contact" data-chat>💬 지금 바로 채팅 상담 →</a>
       <a class="btn btn-g" href="#talk">대화 예시 더 보기</a>
     </div>
     <p class="ex-note">※ 대화 화면은 이해를 돕기 위한 예시입니다.</p>
@@ -458,6 +459,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <p>이메일·카카오톡·전화로 편하게 문의하세요. 지금 하시는 일을 듣고 자동화 순서부터 알려드립니다.</p>
       </div>
       <div class="clist">
+        <a href="#contact" data-chat class="chatbtn">💬 실시간 채팅 상담 <span>바로 연결</span></a>
         <a href="tel:010-2507-4905">전화 상담 <span>010-2507-4905</span></a>
         <a href="#" id="kakao">카카오톡 문의 <span>ID: dhdnrj12</span></a>
         <a href="mailto:dhdnrj12@naver.com">이메일 문의 <span>dhdnrj12@naver.com</span></a>
@@ -469,7 +471,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <footer><div class="wrap"><span>AI 업무 자동화 컨설팅 · 전화 010-2507-4905 · 이메일 dhdnrj12@naver.com</span><span>© 2026</span></div></footer>
 
-<div class="mbar"><a class="btn btn-g" href="tel:010-2507-4905">전화 상담</a><a class="btn btn-p" href="#contact">상담 신청</a></div>
+<div class="mbar"><a class="btn btn-g" href="tel:010-2507-4905">전화 상담</a><a class="btn btn-p" href="#contact" data-chat>💬 채팅 상담</a></div>
 <script>
 (()=>{const S=[...document.querySelectorAll('.sl')],D=[...document.querySelectorAll('.dot')],box=document.getElementById('slider');let i=0,tm;
 function go(n){i=(n+S.length)%S.length;S.forEach((s,k)=>s.classList.toggle('on',k===i));D.forEach((d,k)=>{d.classList.toggle('on',k===i);});D[i].querySelector('i').replaceWith(Object.assign(document.createElement('i')));reset();}
@@ -484,6 +486,11 @@ reset();})();
 
 const hd=document.getElementById('hd');document.getElementById('kakao').addEventListener('click',e=>{e.preventDefault();navigator.clipboard&&navigator.clipboard.writeText('dhdnrj12');alert('카카오톡 ID "dhdnrj12"가 복사되었습니다.\n카카오톡 > 친구 추가 > ID로 추가에서 붙여넣어 주세요.');});
 addEventListener('scroll',()=>hd.classList.toggle('s',scrollY>8),{passive:true});
+</script>
+<script>
+(function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+ChannelIO('boot',{"pluginKey":"d1166f84-341a-4344-b7e1-39cf342c6913","mobileMessengerMode":"iframe"});
+document.addEventListener('click',function(e){var a=e.target.closest('[data-chat]');if(!a)return;e.preventDefault();ChannelIO('showMessenger');});
 </script>
 </body>
 </html>
