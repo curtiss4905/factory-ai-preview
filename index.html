@@ -325,9 +325,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .sf-prompt p{margin-top:8px;color:var(--soft);line-height:1.6}
 .sf-prompt .pipe{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
 .sf-prompt .pipe span{font-size:12px;font-weight:700;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:5px 9px}
-.reels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:520px}
-.reel{aspect-ratio:9/16;border-radius:16px;position:relative;overflow:hidden;color:#fff;box-shadow:0 20px 40px -20px rgba(13,23,56,.5)}
-.reel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.65))}
+.reels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:560px}
+.reel{aspect-ratio:9/16;border-radius:16px;position:relative;overflow:hidden;color:#fff;box-shadow:0 20px 40px -20px rgba(13,23,56,.5);background:#0D1738;margin:0}
+.reel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.reel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 25%,transparent 55%,rgba(0,0,0,.75))}
+.reel b span{display:block;font-size:11.5px;font-weight:600;opacity:.85;margin-top:3px}
 .reel b{position:absolute;left:12px;right:12px;bottom:14px;z-index:1;font-size:14px;line-height:1.4}
 .reel small{position:absolute;left:12px;right:12px;bottom:56px;z-index:1;height:3px;border-radius:3px;background:rgba(255,255,255,.35)}
 .reel em{position:absolute;left:10px;top:10px;z-index:1;font-style:normal;font-size:10.5px;font-weight:800;background:rgba(0,0,0,.45);border-radius:6px;padding:3px 7px}
@@ -577,16 +579,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </div>
       <div class="st-vis">
         <div class="sf">
-          <div class="sf-prompt"><small>입력</small><p>"겨울 신제품, 따뜻함을 강조한 15초 숏폼 3안. 마지막 컷에 할인 문구."</p><div class="pipe"><span>Codex 기획</span><span>→</span><span>장면 프롬프트</span><span>→</span><span>영상 AI 생성</span><span>→</span><span>자막·편집</span></div></div>
+          <div class="sf-prompt"><small>코칭에서 하는 일</small><p>실제로 화제가 된 AI 광고를 장면 단위로 뜯어보고, 같은 구조를 대표님 제품으로 다시 만들어 봅니다.</p><div class="pipe"><span>레퍼런스 분석</span><span>→</span><span>Codex 기획·프롬프트</span><span>→</span><span>영상 AI 생성</span><span>→</span><span>자막·편집</span></div></div>
           <div class="reels">
-            <div class="reel r1"><em>A안</em><span class="ic">❄️</span><b>"출근길이 제일 추울 때"</b></div>
-            <div class="reel r2"><em>B안</em><span class="ic">☕</span><b>고객 후기 3컷</b></div>
-            <div class="reel r3"><em>C안</em><span class="ic">🔥</span><b>"3초 만에 따뜻해짐"</b></div>
+            <figure class="reel"><img src="assets/reel_coke.gif" alt="코카콜라 Holidays Are Coming AI 광고 장면" loading="lazy"><em>시즌 캠페인</em><b>코카콜라<br><span>AI 생성 연말 광고 (2025)</span></b></figure>
+            <figure class="reel"><img src="assets/reel_burger.gif" alt="Veo 3로 만든 치킨버거 푸드 광고 장면" loading="lazy"><em>음식·제품</em><b>푸드 광고<br><span>Veo 3 생성 · 재료가 쌓이는 연출</span></b></figure>
+            <figure class="reel"><img src="assets/reel_im8.gif" alt="IM8 건강기능식품 AI 광고 장면" loading="lazy"><em>건기식·뷰티</em><b>IM8 (건기식)<br><span>AI 광고 · 공개 3일 2.3억 뷰*</span></b></figure>
           </div>
         </div>
-        <span class="ex-tag">※ 구성 예시 화면 (실제 영상은 코칭 중 제작)</span>
-      </div>
-    </article>
+        <span class="ex-tag">※ 공개된 AI 광고의 일부 장면을 교육용 레퍼런스로 인용 · 저작권은 각 브랜드·제작사에 있습니다 (출처: Coca-Cola, ZNB Digital Studio Flow, PJ Ace/IM8 공식 채널) · *제작자 발표 수치</span>
+      </article>
 
     <article class="stage" id="s4">
       <div>
