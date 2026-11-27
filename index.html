@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI 업무 자동화 컨설팅 — 메일·견적·발주·현황판을 AI 직원이 처리합니다</title>
-<meta name="description" content="중소기업·공장 전용 AI 업무 자동화 컨설팅. 메일 자동 분류, 견적서·작업지시서·발주서 자동 작성·발송, 맞춤 대시보드, 전용 AI 에이전트 설치와 교육.">
-<meta property="og:title" content="AI 업무 자동화 컨설팅">
-<meta property="og:description" content="메일 분류부터 견적서·발주서, 매출·매입 현황판까지. 우리 회사 전용 AI 직원을 설치해 드립니다.">
-<meta property="og:image" content="assets/erp_dash.jpg">
+<title>AI 업무 자동화 경영진 코칭 — 대표가 직접 AI 비서를 부리는 6단계</title>
+<meta name="description" content="대표·경영진 전용 AI 코칭. LLM 이해, 클로드 바이브코딩, AI 숏폼 영상, 텔레그램 AI 비서, 세금계산서·계약서 검토 자동화, 경영 대시보드까지 6단계 방문 코칭.">
+<meta property="og:title" content="AI 업무 자동화 경영진 코칭">
+<meta property="og:description" content="대표가 먼저 AI를 부릴 줄 알면 회사가 바뀝니다. 1회 5시간 방문 코칭, 6단계 커리큘럼.">
+<meta property="og:image" content="assets/curtis_bw.jpg">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <style>
 :root{
@@ -256,23 +256,170 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 }
 @media (max-width:560px){ .dot span{display:none} .arr{width:40px;height:40px} }
 @media (prefers-reduced-motion:reduce){.sl,.sl.on{transition:none}.sl .m{opacity:1;transform:none;animation:none!important}.dot.on i::after{animation:none;transform:none}}
+
+/* ===== v3 coaching ===== */
+.nav .btn{white-space:nowrap}
+.sl-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.for{padding:96px 0;border-top:1px solid var(--line);background:#fff}
+.for-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:48px}
+.fc{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px}
+.fc i{font-style:normal;font-size:28px}
+.fc h3{font-size:20px;font-weight:800;letter-spacing:-.02em;margin:12px 0 8px}
+.fc p{font-size:15px;color:var(--soft)}
+.who{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:28px}
+.who span{background:var(--navy);color:#fff;border-radius:99px;padding:8px 16px;font-size:14px;font-weight:700}
+
+/* curriculum */
+.cur{padding:110px 0}
+.road{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:44px}
+.road a{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 14px;display:block;transition:border-color .15s,transform .15s}
+.road a:hover{border-color:var(--blue);transform:translateY(-2px)}
+.road small{font-size:12px;font-weight:800;color:var(--blue)}
+.road b{display:block;font-size:14.5px;line-height:1.4;margin-top:4px;letter-spacing:-.01em}
+.road a.adv{background:var(--navy);border-color:var(--navy);color:#fff}
+.road a.adv small{color:#8DB2FF}
+.stage{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:56px;align-items:center;margin-top:88px;scroll-margin-top:90px}
+.stage:nth-of-type(even) .st-vis{order:-1}
+.st-no{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:var(--blue);background:var(--blue-l);border-radius:99px;padding:6px 14px}
+.st-no.adv{background:var(--navy);color:#fff}
+.stage h3{font-size:clamp(24px,2.6vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.3;margin:14px 0 12px}
+.stage>div>p{color:var(--soft);font-size:16px}
+.learn{margin-top:22px;display:grid;gap:10px}
+.learn div{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 16px;font-size:15px;font-weight:600}
+.learn div::before{content:"✓";color:var(--blue);font-weight:800}
+.outcome{margin-top:16px;font-size:14px;color:var(--mute)}
+.outcome b{color:var(--ink)}
+.st-vis{min-width:0}
+.ex-tag{display:inline-block;font-size:11.5px;font-weight:700;color:var(--mute);margin-top:10px}
+
+/* mock: llm cards */
+.llm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.llm div{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 16px;box-shadow:var(--sh)}
+.llm .lg{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px}
+.llm b{display:block;font-size:17px;margin:12px 0 6px}
+.llm p{font-size:13px;color:var(--soft);line-height:1.55}
+.llm-q{grid-column:1/-1;background:var(--navy)!important;color:#fff;border:0!important}
+.llm-q small{color:#8DB2FF;font-weight:800;font-size:12px}
+.llm-q p{color:#D6DCEE!important;font-size:14px!important;margin-top:6px}
+
+/* mock: code editor */
+.ide{background:#0F172A;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -25px rgba(13,23,56,.5);font-size:13px}
+.ide .bar{background:#1E293B;border-color:#1E293B}.ide .bar i{background:#475569}
+.ide .bar span{background:#0F172A;border-color:#334155;color:#94A3B8}
+.ide-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.ide-chat{padding:18px;border-right:1px solid #1E293B;display:grid;gap:10px;align-content:start}
+.ide-chat .q{background:#1E3A8A;color:#E0E7FF;border-radius:12px;padding:10px 12px;line-height:1.55}
+.ide-chat .a{background:#1E293B;color:#CBD5E1;border-radius:12px;padding:10px 12px;line-height:1.55}
+.ide-chat .a b{color:#86EFAC}
+.ide-out{background:#fff;margin:14px;border-radius:12px;padding:16px;align-self:start}
+.ide-out h5{font-size:14px;font-weight:800}
+.ide-out .row{display:flex;justify-content:space-between;font-size:12.5px;padding:7px 0;border-bottom:1px solid var(--line);color:var(--soft)}
+.ide-out .row b{color:var(--ink)}
+.ide-out .tot{display:flex;justify-content:space-between;margin-top:10px;font-weight:800;color:var(--blue-d)}
+.ide-out .btn2{margin-top:12px;background:var(--blue);color:#fff;border-radius:9px;text-align:center;font-size:12.5px;font-weight:700;padding:9px}
+
+/* mock: short-form */
+.sf{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.sf-prompt{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--sh);font-size:13.5px}
+.sf-prompt small{font-weight:800;color:var(--blue);font-size:12px}
+.sf-prompt p{margin-top:8px;color:var(--soft);line-height:1.6}
+.sf-prompt .pipe{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.sf-prompt .pipe span{font-size:12px;font-weight:700;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:5px 9px}
+.reels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:520px}
+.reel{aspect-ratio:9/16;border-radius:16px;position:relative;overflow:hidden;color:#fff;box-shadow:0 20px 40px -20px rgba(13,23,56,.5)}
+.reel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.65))}
+.reel b{position:absolute;left:12px;right:12px;bottom:14px;z-index:1;font-size:14px;line-height:1.4}
+.reel small{position:absolute;left:12px;right:12px;bottom:56px;z-index:1;height:3px;border-radius:3px;background:rgba(255,255,255,.35)}
+.reel em{position:absolute;left:10px;top:10px;z-index:1;font-style:normal;font-size:10.5px;font-weight:800;background:rgba(0,0,0,.45);border-radius:6px;padding:3px 7px}
+.reel .ic{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:64px;z-index:0}
+.r1{background:linear-gradient(160deg,#1E3A8A,#6366F1)}.r2{background:linear-gradient(160deg,#0F766E,#22D3EE)}.r3{background:linear-gradient(160deg,#9A3412,#F59E0B)}
+
+/* mock: doc+chat */
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+.duo .tc{background:#D3E5CF}
+.doc{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--sh);font-size:12.5px}
+.doc h5{font-size:14px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
+.doc h5 span{font-size:11px;background:#FEF3C7;color:#92400E;border-radius:6px;padding:2px 7px}
+.doc .ln{display:flex;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);color:var(--soft);line-height:1.5}
+.doc .ln:last-child{border-bottom:0}
+.doc .ln i{font-style:normal;flex:none;font-weight:800}
+.doc .hi{color:#B91C1C}.doc .md{color:#B45309}.doc .ok{color:#15803D}
+
+/* instructor */
+.tutor{padding:110px 0;background:var(--navy);color:#fff}
+.tutor-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:64px;align-items:center}
+.tutor-grid>*{min-width:0}
+.tutor img{width:100%;max-width:440px;border-radius:28px;aspect-ratio:4/5;object-fit:cover;object-position:center 20%;filter:grayscale(1);box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+.tutor .kicker{color:#7EA6FF}
+.tutor h2{font-size:clamp(34px,4vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+.tutor h2 small{display:block;font-size:18px;font-weight:600;color:#AEB7D3;margin-top:8px;letter-spacing:0}
+.tutor .role{display:inline-block;margin-top:18px;background:#16224A;border:1px solid #24315E;border-radius:99px;padding:8px 16px;font-weight:700;font-size:15px}
+.cv{list-style:none;margin-top:28px;display:grid;gap:12px}
+.cv li{background:#16224A;border:1px solid #24315E;border-radius:16px;padding:16px 18px 16px 48px;position:relative;font-size:16px;color:#E2E8F5;line-height:1.55}
+.cv li::before{content:"";position:absolute;left:20px;top:22px;width:10px;height:10px;border-radius:3px;background:#3B6FF0}
+.tutor .q{margin-top:26px;font-size:17px;color:#C7D2EE;border-left:3px solid #3B6FF0;padding-left:16px}
+
+/* pricing */
+.fee{padding:110px 0 110px}
+.fee-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:24px;margin-top:48px;align-items:stretch}
+.fee-grid>*{min-width:0}
+.fee-main{background:#fff;border:1px solid var(--line);border-radius:28px;padding:40px;box-shadow:var(--sh)}
+.fee-main .big{font-size:46px;font-weight:800;letter-spacing:-.03em;color:var(--blue-d);line-height:1.1;margin-top:10px}
+.fee-main .big small{font-size:16px;color:var(--mute);font-weight:600;margin-left:6px}
+.fee-main ul{list-style:none;margin-top:22px;display:grid;gap:10px}
+.fee-main li{font-size:15.5px;padding-left:24px;position:relative;color:var(--soft)}
+.fee-main li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:800}
+.fee-calc{background:var(--blue-l);border-radius:28px;padding:36px}
+.fee-calc h4{font-size:18px;font-weight:800}
+.fee-calc table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14.5px}
+.fee-calc th,.fee-calc td{padding:11px 6px;border-bottom:1px solid #d3e0fb;text-align:right}
+.fee-calc th:first-child,.fee-calc td:first-child{text-align:left}
+.fee-calc th{font-size:13px;color:var(--mute);font-weight:700}
+.fee-calc td{font-weight:700;font-variant-numeric:tabular-nums}
+.fee-calc td.b{color:var(--blue-d)}
+.fee-calc .n{font-size:12.5px;color:var(--mute);margin-top:12px;line-height:1.6}
+.fee .btn{margin-top:26px;width:100%}
+.plan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
+.plan div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.plan small{font-size:12px;font-weight:800;color:var(--blue)}
+.plan b{display:block;font-size:16px;margin:4px 0}
+.plan p{font-size:13px;color:var(--soft)}
+
+@media (max-width:1000px){
+  .for-grid,.road{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stage{grid-template-columns:minmax(0,1fr);gap:28px;margin-top:64px}
+  .stage:nth-of-type(even) .st-vis{order:0}
+  .tutor-grid,.fee-grid{grid-template-columns:minmax(0,1fr);gap:36px}
+  .tutor img{max-width:360px;margin:0 auto}
+  .cur,.tutor,.fee,.for{padding:72px 0}
+  .fee-main,.fee-calc{padding:28px 22px}
+}
+@media (max-width:560px){
+  .for-grid{grid-template-columns:minmax(0,1fr)}
+  .llm{grid-template-columns:minmax(0,1fr)}
+  .ide-body{grid-template-columns:minmax(0,1fr)}
+  .ide-chat{border-right:0}
+  .duo{grid-template-columns:minmax(0,1fr)}
+  .plan{grid-template-columns:minmax(0,1fr)}
+  .fee-main .big{font-size:38px}
+}
+
 </style>
 </head>
 <body>
 
 <header id="hd">
   <div class="wrap nav">
-    <a class="logo" href="#top"><b>M</b>AI 업무 자동화 <span>컨설팅</span></a>
+    <a class="logo" href="#top"><b>M</b>AI 업무 자동화 <span>경영진 코칭</span></a>
     <nav class="menu">
-      <a href="#talk">대화 예시</a>
+      <a href="#for">코칭 대상</a>
+      <a href="#curriculum">커리큘럼</a>
       <a href="#screens">실제 화면</a>
-      <a href="#telegram">메일 자동화</a>
-      <a href="#services">서비스</a>
-      <a href="#process">진행 방식</a>
-      <a href="#price">비용</a>
+      <a href="#tutor">강사</a>
+      <a href="#price">수강료</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn-p" href="#contact" data-chat>💬 채팅 상담</a>
+    <a class="btn btn-p" href="checkout.html">수강 신청</a>
   </div>
 </header>
 
@@ -281,72 +428,219 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section class="hero">
   <div class="wrap">
     <div class="slider" id="slider" aria-roledescription="carousel">
-      
+
       <div class="sl on" data-i="0">
         <div class="sl-copy">
-          <span class="sl-tag">인건비 절감</span>
-          <h1>알바·인턴·주니어<br><em>5명 몫의 반복 업무</em>를<br>AI 비서가 대신합니다</h1>
-          <p class="sub">단순 경리, 비서 업무, 매일 반복되는 사무 일. 사람을 더 뽑지 않아도 AI 에이전트가 처리합니다.</p>
-          <div class="stat"><div><small>연봉 3,000만 원 × 최대 5명 기준</small><b>연 2억 원+</b><span>인건비 절감 효과</span></div><p>복리후생·4대보험·퇴직금 포함 시 1인당 연 약 4,000만 원 수준으로 계산<br>(업무 범위에 따라 달라질 수 있습니다)</p></div>
+          <span class="sl-tag">대표·경영진 전용</span>
+          <h1>대표가 먼저<br><em>AI를 부릴 줄 알면</em><br>회사가 바뀝니다</h1>
+          <p class="sub">직원에게 맡기기 전에, 대표님이 직접 AI 비서에게 일을 시켜 보는 6단계 코칭. 개념 이해부터 우리 회사 업무 자동화까지 함께 만듭니다.</p>
+          <div class="chips2"><span>👔 대표·경영진 대상</span><span>🏢 1:1 · 2:1 방문 코칭</span><span>🧩 우리 회사 업무로 실습</span></div>
         </div>
-        <div class="sl-vis"><div class="ph"><div class="ph-top"><span class="av">AI</span><div><b>경리 AI 비서</b><small>온라인 · 24시간</small></div></div><div class="ph-body"><div class="m u">이번 달 미수금 정리해줘<i>09:02 ✓✓</i></div><div class="m b ">11월 미수 거래처 <b>5곳</b>입니다.<br>· A사 1,320만 원 (45일 경과)<br>· C사 860만 원 (32일 경과)<br>· 외 3곳<i>09:02</i></div><div class="m b ">거래처별 입금 요청 메일 초안 5건을 만들었어요.<div class="mb"><span>✓ 발송</span><span>✎ 수정</span></div><i>09:02</i></div><div class="m u">발송해줘<i>09:03 ✓✓</i></div><div class="m b ">5건 발송 완료. 입금 확인되면 바로 알려드릴게요 👍<i>09:03</i></div></div><div class="ph-in"><span>메시지 보내기</span><em>➤</em></div></div></div>
+        <div class="sl-vis"><div class="ph"><div class="ph-top"><span class="av">AI</span><div><b>대표님 AI 비서</b><small>온라인 · 24시간</small></div></div><div class="ph-body"><div class="m b">☀️ <b>오늘 아침 보고</b><br>· 신규 문의 메일 4건 (견적 요청 2)<br>· 어제 매출 1,840만 원<br>· 11시 거래처 미팅 자료 준비 완료<i>07:30</i></div><div class="m u">견적 요청 2건 우리 단가표로 견적서 만들어줘<i>07:41 ✓✓</i></div><div class="m b">2건 작성했어요.<div class="mf"><b>PDF</b><div>견적서_A사_1127.pdf<small>단가표 기준 자동 계산</small></div></div><div class="mb"><span>✓ 확인 후 발송</span><span>✎ 수정</span></div><i>07:42</i></div><div class="m u">발송해줘. 이제 이런 건 내가 안 봐도 되겠네<i>07:43 ✓✓</i></div><div class="m b">발송했어요 ✓ 앞으로 단가표 범위 안 견적은 초안만 올려두고, 할인 요청만 보고드릴게요.<i>07:43</i></div></div><div class="ph-in"><span>메시지 보내기</span><em>➤</em></div></div></div>
       </div>
+
       <div class="sl" data-i="1">
         <div class="sl-copy">
-          <span class="sl-tag">24시간 근무</span>
-          <h1>1년 365일 24시간,<br><em>쉬지 않는</em><br>나만의 AI 비서</h1>
-          <p class="sub">퇴근 후에 온 메일도, 새벽에 들어온 발주도 AI 에이전트가 먼저 정리해 두고 아침에 보고합니다.</p>
-          <div class="chips2"><span>🌙 야간 메일 처리</span><span>📅 일정 브리핑</span><span>📎 자료 자동 준비</span></div>
+          <span class="sl-tag">반복 업무 줄이기</span>
+          <h1>세금계산서·계약서 검토,<br><em>말 한마디로</em><br>끝내는 법</h1>
+          <p class="sub">매달 반복되는 발행·정리·검토 업무를 AI 에이전트에게 넘기는 방법을, 대표님 회사의 실제 서류로 실습합니다.</p>
+          <div class="chips2"><span>🧾 세금계산서 발행</span><span>⚖️ 계약서 1차 검토</span><span>📂 서류 자동 정리</span></div>
         </div>
-        <div class="sl-vis"><div class="ph"><div class="ph-top"><span class="av">AI</span><div><b>비서 AI</b><small>온라인 · 24시간</small></div></div><div class="ph-body"><div class="m b ">🌙 <b>새벽 2:14</b> 해외 거래처 발주 메일 도착 → 품목·수량 정리해서 작업지시서 초안 저장했어요.<i>02:14</i></div><div class="m b ">☀️ <b>오늘 일정</b><br>10:00 B사 미팅<br>14:00 C사 납품<br>16:00 세무사 통화<i>06:30</i></div><div class="m u">10시 미팅 자료 뽑아줘<i>07:41 ✓✓</i></div><div class="m b ">B사 최근 6개월 거래내역과 미수 현황 정리했습니다.<div class="mf"><b>PDF</b><div>B사_미팅자료_1124.pdf<small>3페이지 · 자동 생성</small></div></div><i>07:42</i></div></div><div class="ph-in"><span>메시지 보내기</span><em>➤</em></div></div></div>
+        <div class="sl-vis"><div class="ph"><div class="ph-top"><span class="av">AI</span><div><b>경영지원 AI</b><small>온라인 · 24시간</small></div></div><div class="ph-body"><div class="m u">이번 달 A사 잔금 650만 원 세금계산서 발행 준비해줘<i>10:02 ✓✓</i></div><div class="m b">발행 전 확인해 주세요.<br>· 공급가 5,909,091원<br>· 세액 590,909원<br>· 합계 6,500,000원 (청구)<div class="mb"><span>✓ 승인 후 발행</span><span>✎ 수정</span></div><i>10:02</i></div><div class="m u">그리고 B사 계약서 위험한 조항 있는지 봐줘<i>10:05 ✓✓</i></div><div class="m b">⚠️ 확인이 필요한 조항 3개<br>· 제7조 지체상금 상한 없음<br>· 제11조 일방 해지 30일 → 협의 권장<br>· 제14조 관할 법원 상대방 소재지<br><small style="color:#777">※ 최종 판단은 법률 전문가 검토</small><i>10:06</i></div></div><div class="ph-in"><span>메시지 보내기</span><em>➤</em></div></div></div>
       </div>
+
       <div class="sl" data-i="2">
         <div class="sl-copy">
-          <span class="sl-tag">한 번 세팅</span>
-          <h1>한 번 세팅하면,<br><em>유지보수 비용 없이</em><br>계속 일합니다</h1>
-          <p class="sub">세팅·설치 비용은 처음 한 번. 이후엔 말로 일을 가르치면 스스로 반복합니다. (AI 사용료 월 3~5만 원 내외 별도)</p>
-          <div class="chips2"><span>💬 말로 업무 지시</span><span>🔁 반복 업무 자동 등록</span><span>🛠 유지보수비 없음</span></div>
+          <span class="sl-tag">콘텐츠도 AI로</span>
+          <h1>광고 숏폼 영상도<br><em>대표님이 직접</em><br>뽑아 봅니다</h1>
+          <p class="sub">코덱스(Codex)에 힉스필드·런웨이 같은 영상 AI를 연결해, 기획부터 15초 세로 영상까지 한 번에 만드는 흐름을 체험합니다.</p>
+          <div class="chips2"><span>🎬 15초 세로 영상</span><span>✍️ 기획·자막 자동</span><span>🔗 영상 AI 연동</span></div>
         </div>
-        <div class="sl-vis"><div class="ph"><div class="ph-top"><span class="av">AI</span><div><b>반복업무 AI</b><small>온라인 · 24시간</small></div></div><div class="ph-body"><div class="m u">앞으로 매주 월요일 9시에 지난주 매출·매입 정리해서 보내줘<i>금 17:20 ✓✓</i></div><div class="m b ">등록했어요 ✓<br><b>매주 월 09:00</b> 주간 매출·매입 보고<i>금 17:20</i></div><div class="m b ">📊 <b>지난주 보고</b><br>매출 4,230만 원 (▲8%)<br>매입 2,910만 원<br>신규 발주 12건<i>월 09:00</i></div><div class="m u">좋아. 다음부터는 거래처별로도 나눠줘<i>월 09:12 ✓✓</i></div><div class="m b ">다음 보고부터 거래처별로 나눠서 드릴게요.<i>월 09:12</i></div></div><div class="ph-in"><span>메시지 보내기</span><em>➤</em></div></div></div>
+        <div class="sl-vis"><div class="ph"><div class="ph-top"><span class="av">AI</span><div><b>콘텐츠 AI</b><small>온라인 · 24시간</small></div></div><div class="ph-body"><div class="m u">신제품 겨울 프로모션 15초 숏폼 3개 시안 만들어줘<i>14:10 ✓✓</i></div><div class="m b">콘셉트 3개로 기획했어요.<br>① 문제 상황 → 해결<br>② 고객 후기형<br>③ 숫자로 보여주기<i>14:11</i></div><div class="m b">영상 AI로 3편 생성 완료 🎬<div class="mf"><b style="background:#111">MP4</b><div>winter_A·B·C.mp4<small>9:16 · 15초 · 자막 포함</small></div></div><i>14:26</i></div><div class="m u">B안으로 가자. 마지막 컷에 할인 문구 넣어줘<i>14:30 ✓✓</i></div><div class="m b">수정본 올렸어요 ✓<i>14:33</i></div></div><div class="ph-in"><span>메시지 보내기</span><em>➤</em></div></div></div>
       </div>
+
       <div class="sl" data-i="3">
         <div class="sl-copy">
-          <span class="sl-tag">메일·문서 자동화</span>
-          <h1>메일 분류부터<br><em>견적서·발주서</em>까지<br>출근 전에 끝</h1>
-          <p class="sub">밤사이 메일을 분류하고, 메일 내용으로 견적서·작업지시서·발주서를 만들어 확인 한 번이면 발송합니다.</p>
-          <div class="chips2"><span>📬 메일 자동 분류</span><span>🧾 견적서 자동 작성</span><span>📤 확인 후 발송</span></div>
+          <span class="sl-tag">경영 대시보드</span>
+          <h1>회사 숫자를<br><em>한 화면에서</em><br>매일 아침 받아 보세요</h1>
+          <p class="sub">심화반에서는 매출·비용·영업 현황을 모으는 대시보드를 만들고, 에이전트가 이상 신호를 먼저 알려 주도록 고도화합니다.</p>
+          <div class="chips2"><span>📊 맞춤 대시보드</span><span>🔔 이상 신호 알림</span><span>📈 주간 경영 리포트</span></div>
         </div>
-        <div class="sl-vis"><div class="ph"><div class="ph-top"><span class="av">AI</span><div><b>업무 AI 비서</b><small>온라인 · 24시간</small></div></div><div class="ph-body"><div class="m b ">📬 <b>오늘 아침 메일 23통</b><br>발주서 4 · 견적요청 3 · 세금계산서 6 · 기타 10<i>07:00</i></div><div class="m b ">견적서 초안 3건 완성했어요.<div class="mf"><b>PDF</b><div>견적서_A사_1124.pdf<small>단가표 기준 자동 계산</small></div></div><div class="mb"><span>✓ 확인 후 발송</span><span>✎ 수정</span></div><i>07:05</i></div><div class="m u">B사는 5% 할인해서 보내줘<i>07:12 ✓✓</i></div><div class="m b ">B사 견적서 5% 할인 반영해서 발송했어요. 작업지시서 4장은 공유 폴더에 저장했습니다.<i>07:12</i></div></div><div class="ph-in"><span>메시지 보내기</span><em>➤</em></div></div></div>
+        <div class="sl-vis"><div class="ph"><div class="ph-top"><span class="av">AI</span><div><b>경영 리포트 AI</b><small>온라인 · 24시간</small></div></div><div class="ph-body"><div class="m b">📊 <b>주간 경영 리포트</b><br>매출 4,230만 원 (▲8%)<br>비용 2,910만 원 (▲15%)<br>신규 거래처 3곳<i>월 08:00</i></div><div class="m b">🔔 비용 증가 원인: 외주비 +420만 원 (C사 프로젝트). 마진율이 31% → 24%로 떨어졌어요.<i>월 08:00</i></div><div class="m u">C사 프로젝트 이번 달 손익 따로 뽑아줘<i>월 08:12 ✓✓</i></div><div class="m b">대시보드에 C사 탭 추가했어요. 링크 확인해 주세요 ✓<i>월 08:13</i></div></div><div class="ph-in"><span>메시지 보내기</span><em>➤</em></div></div></div>
       </div>
+
       <div class="sl-nav">
         <button class="arr" id="prev" aria-label="이전">‹</button>
-        <div class="dots"><button class="dot on" data-i="0" aria-label="인건비 절감"><span>인건비 절감</span><i></i></button><button class="dot" data-i="1" aria-label="24시간 근무"><span>24시간 근무</span><i></i></button><button class="dot" data-i="2" aria-label="한 번 세팅"><span>한 번 세팅</span><i></i></button><button class="dot" data-i="3" aria-label="메일·문서 자동화"><span>메일·문서 자동화</span><i></i></button></div>
+        <div class="dots"><button class="dot on" data-i="0" aria-label="대표·경영진 전용"><span>대표·경영진 전용</span><i></i></button><button class="dot" data-i="1" aria-label="반복 업무 줄이기"><span>반복 업무 줄이기</span><i></i></button><button class="dot" data-i="2" aria-label="콘텐츠도 AI로"><span>콘텐츠도 AI로</span><i></i></button><button class="dot" data-i="3" aria-label="경영 대시보드"><span>경영 대시보드</span><i></i></button></div>
         <button class="arr" id="next" aria-label="다음">›</button>
       </div>
     </div>
     <div class="ctas">
-      <a class="btn btn-p" href="#contact" data-chat>💬 지금 바로 채팅 상담 →</a>
-      <a class="btn btn-g" href="#talk">대화 예시 더 보기</a>
+      <a class="btn btn-p" href="checkout.html">수강 신청하기 →</a>
+      <a class="btn btn-g" href="#curriculum">6단계 커리큘럼 보기</a>
+      <a class="btn btn-g" href="#contact" data-chat>💬 채팅 상담</a>
     </div>
-    <p class="ex-note">※ 대화 화면은 이해를 돕기 위한 예시입니다.</p>
+    <p class="ex-note">※ 대화 화면은 이해를 돕기 위한 예시이며, 금액·거래처는 가상의 값입니다.</p>
   </div>
 </section>
 
-<section class="talk" id="talk">
+<section class="for" id="for">
   <div class="wrap">
     <div class="center">
-      <span class="kicker">대화 예시</span>
-      <h2 class="h2">사람에게 말하듯 시키면 됩니다</h2>
-      <p class="sub">경리, 비서, 영업 지원, 생산·구매까지. 텔레그램으로 대화하며 일을 맡기는 장면들입니다.</p>
+      <span class="kicker">코칭 대상</span>
+      <h2 class="h2">강의가 아니라, <em style="font-style:normal;color:var(--blue)">대표님 회사 일</em>로 하는 코칭</h2>
+      <p class="sub">AI를 '써 봐야지' 하고 미뤄 온 대표·경영진을 위한 과정입니다. 개념 설명은 짧게, 실습은 대표님 회사의 실제 업무로 합니다.</p>
     </div>
-    <div class="tgrid">
-      <div class="tc"><span class="tt">경리</span><div class="m u">어제 들어온 세금계산서 정리해줘<i> ✓✓</i></div><div class="m b ">6건 확인했어요. 매입 5건·매출 1건, 엑셀 장부에 반영하고 원본은 폴더에 저장했습니다.<i></i></div></div>
-      <div class="tc"><span class="tt">입금 확인</span><div class="m u">A사 입금됐어?<i> ✓✓</i></div><div class="m b ">오늘 11:20에 1,320만 원 입금 확인됐어요. 미수 목록에서 지웠습니다 ✓<i></i></div></div>
-      <div class="tc"><span class="tt">구매·발주</span><div class="m u">포장 박스 재고 부족한 거 발주서 만들어줘<i> ✓✓</i></div><div class="m b ">기준 수량 미달 품목 3개로 발주서 작성했어요.<div class="mb"><span>✓ 거래처 발송</span><span>✎ 수정</span></div><i></i></div></div>
-      <div class="tc"><span class="tt">생산</span><div class="m u">이번 주 납기 위험한 거 있어?<i> ✓✓</i></div><div class="m b ">7건 중 <b>2건</b>이 납기 임박이에요. B사(11/25), D사(11/26) — 작업지시서 우선순위 올려둘까요?<i></i></div></div>
-      <div class="tc"><span class="tt">비서</span><div class="m u">오늘 통화한 내용 회의록으로 정리해줘<i> ✓✓</i></div><div class="m b ">녹음 3건 요약해서 회의록 만들었어요. 할 일 4개는 일정에 등록했습니다.<i></i></div></div>
-      <div class="tc"><span class="tt">거래처 응대</span><div class="m u">C사가 단가 문의했는데 답장 써줘<i> ✓✓</i></div><div class="m b ">작년 단가표 기준으로 답장 초안 썼어요. 수량별 할인 조건도 넣었습니다.<div class="mb"><span>✓ 발송</span><span>✎ 수정</span></div><i></i></div></div>
+    <div class="for-grid">
+      <div class="fc"><i>🧭</i><h3>무엇을 맡길지 판단하는 눈</h3><p>어떤 업무를 AI에게 넘기고, 어떤 일은 사람이 해야 하는지 대표가 직접 판단할 수 있게 됩니다.</p></div>
+      <div class="fc"><i>🛠️</i><h3>코딩 몰라도 직접 만듭니다</h3><p>말로 지시해서 계산기·견적서·대시보드 같은 업무 도구를 직접 만들어 봅니다.</p></div>
+      <div class="fc"><i>🏢</i><h3>방문 1:1 · 2:1 코칭</h3><p>대표님 사무실로 찾아가 하루 5시간 진행합니다. 경영진 두 분이 함께 들으면 20% 할인됩니다.</p></div>
     </div>
+    <div class="who"><span>중소기업·제조업 대표</span><span>스타트업 창업자</span><span>임원·본부장</span><span>1인 사업자</span></div>
+  </div>
+</section>
+
+<section class="cur" id="curriculum">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker">커리큘럼</span>
+      <h2 class="h2">개념부터 업무 고도화까지 6단계</h2>
+      <p class="sub">한 단계씩 쌓아 올려, 마지막에는 대표님 회사 전용 AI 비서와 대시보드가 남습니다.</p>
+    </div>
+    <div class="road">
+      <a href="#s1"><small>STEP 1</small><b>AI 기본 개념<br>LLM 이해</b></a>
+      <a href="#s2"><small>STEP 2</small><b>클로드<br>바이브코딩</b></a>
+      <a href="#s3"><small>STEP 3</small><b>AI 숏폼<br>영상 제작</b></a>
+      <a href="#s4"><small>STEP 4</small><b>나만의<br>AI 비서</b></a>
+      <a href="#s5"><small>STEP 5</small><b>반복 업무<br>자동화</b></a>
+      <a href="#s6" class="adv"><small>STEP 6 · 심화</small><b>대시보드 ·<br>업무 고도화</b></a>
+    </div>
+
+    <article class="stage" id="s1">
+      <div>
+        <span class="st-no">STEP 1 · AI 교육</span>
+        <h3>클로드·GPT·제미나이,<br>무엇이 다르고 언제 쓰나</h3>
+        <p>LLM(대규모 언어 모델)이 어떻게 답을 만드는지, 각 서비스의 강점과 한계를 경영자 관점에서 정리합니다.</p>
+        <div class="learn"><div>LLM의 작동 원리와 '틀린 답(환각)'이 나오는 이유</div><div>클로드·챗GPT·제미나이 용도별 선택 기준</div><div>회사 자료를 넣을 때 지켜야 할 보안 원칙</div></div>
+        <p class="outcome"><b>끝나면</b> — 직원이 "AI로 하면 돼요"라고 할 때 맞는지 판단할 수 있습니다.</p>
+      </div>
+      <div class="st-vis">
+        <div class="llm">
+          <div><span class="lg" style="background:#D97757">C</span><b>Claude</b><p>긴 문서 정리, 보고서 작성, 코딩에 강점</p></div>
+          <div><span class="lg" style="background:#10A37F">G</span><b>ChatGPT</b><p>범용 대화, 이미지 생성, 다양한 플러그인</p></div>
+          <div><span class="lg" style="background:#4285F4">G</span><b>Gemini</b><p>구글 메일·문서·드라이브와 연동, 검색 결합</p></div>
+          <div class="llm-q"><small>실습 예시</small><p>같은 질문 "우리 회사 3분기 매출 보고서 요약해줘"를 세 AI에 넣고 결과를 비교합니다.</p></div>
+        </div>
+        <span class="ex-tag">※ 교육 자료 예시</span>
+      </div>
+    </article>
+
+    <article class="stage" id="s2">
+      <div>
+        <span class="st-no">STEP 2 · 바이브코딩</span>
+        <h3>코딩 한 줄 몰라도,<br>말로 업무 도구를 만듭니다</h3>
+        <p>클로드에게 원하는 기능을 말로 설명하면 코드는 AI가 짭니다. 대표님은 결과를 보고 고쳐 달라고만 하면 됩니다.</p>
+        <div class="learn"><div>클로드 코드(Claude Code) 설치와 기본 사용법</div><div>견적 계산기·재고표 같은 사내 도구 직접 만들기</div><div>만든 도구를 인터넷 주소로 공유하기</div></div>
+        <p class="outcome"><b>끝나면</b> — 외주 없이 간단한 사내 웹 도구 하나를 직접 완성합니다.</p>
+      </div>
+      <div class="st-vis">
+        <div class="ide">
+          <div class="bar"><i></i><i></i><i></i><span>claude code · 견적 계산기</span></div>
+          <div class="ide-body">
+            <div class="ide-chat">
+              <div class="q">우리 단가표로 수량 넣으면 할인까지 계산되는 견적 계산기 만들어줘</div>
+              <div class="a">단가표 5개 품목으로 만들었어요. 100개 이상 5%, 500개 이상 10% 할인 규칙을 넣었습니다. <b>✓ 완료</b></div>
+              <div class="q">PDF로 저장 버튼도 추가해줘</div>
+              <div class="a">버튼 추가했어요. <b>✓ 완료</b></div>
+            </div>
+            <div class="ide-out">
+              <h5>견적 계산기</h5>
+              <div class="row"><span>포장 박스 A</span><b>300개</b></div>
+              <div class="row"><span>단가</span><b>1,200원</b></div>
+              <div class="row"><span>할인 (100개 이상)</span><b>-5%</b></div>
+              <div class="tot"><span>합계</span><span>342,000원</span></div>
+              <div class="btn2">PDF로 저장</div>
+            </div>
+          </div>
+        </div>
+        <span class="ex-tag">※ 실습 결과물 예시</span>
+      </div>
+    </article>
+
+    <article class="stage" id="s3">
+      <div>
+        <span class="st-no">STEP 3 · AI 숏폼</span>
+        <h3>코덱스 + 힉스필드·런웨이로<br>15초 숏폼 만들어 보기</h3>
+        <p>코덱스(Codex)로 기획과 자막을 만들고, 힉스필드(Higgsfield)·런웨이(Runway) 같은 영상 AI와 연결해 세로 영상을 뽑습니다.</p>
+        <div class="learn"><div>숏폼 기획 → 장면 프롬프트 자동 작성</div><div>영상 AI 연동으로 장면 생성·자막 입히기</div><div>광고 표현·초상권 등 AI 영상 사용 시 주의점</div></div>
+        <p class="outcome"><b>끝나면</b> — 우리 제품 홍보용 15초 세로 영상 시안을 직접 만들어 봅니다.</p>
+      </div>
+      <div class="st-vis">
+        <div class="sf">
+          <div class="sf-prompt"><small>입력</small><p>"겨울 신제품, 따뜻함을 강조한 15초 숏폼 3안. 마지막 컷에 할인 문구."</p><div class="pipe"><span>Codex 기획</span><span>→</span><span>장면 프롬프트</span><span>→</span><span>영상 AI 생성</span><span>→</span><span>자막·편집</span></div></div>
+          <div class="reels">
+            <div class="reel r1"><em>A안</em><span class="ic">❄️</span><b>"출근길이 제일 추울 때"</b></div>
+            <div class="reel r2"><em>B안</em><span class="ic">☕</span><b>고객 후기 3컷</b></div>
+            <div class="reel r3"><em>C안</em><span class="ic">🔥</span><b>"3초 만에 따뜻해짐"</b></div>
+          </div>
+        </div>
+        <span class="ex-tag">※ 구성 예시 화면 (실제 영상은 코칭 중 제작)</span>
+      </div>
+    </article>
+
+    <article class="stage" id="s4">
+      <div>
+        <span class="st-no">STEP 4 · AI 비서</span>
+        <h3>텔레그램으로 일 시키는<br>나만의 AI 비서 만들기</h3>
+        <p>대표님 전용 AI 에이전트를 설치하고 텔레그램과 연결합니다. 메일·일정·자료 정리를 메시지 한 줄로 맡깁니다.</p>
+        <div class="learn"><div>AI 에이전트 설치와 텔레그램 봇 연결</div><div>아침 브리핑·메일 요약 같은 정기 업무 등록</div><div>에이전트에게 우리 회사 규칙 가르치기</div></div>
+        <p class="outcome"><b>끝나면</b> — 매일 아침 휴대폰으로 보고를 받는 AI 비서가 생깁니다.</p>
+      </div>
+      <div class="st-vis">
+        <div class="duo">
+          <div class="tc"><span class="tt">아침 브리핑</span><div class="m b">☀️ <b>오늘 일정</b><br>10:00 거래처 미팅<br>14:00 팀장 회의<br>16:00 세무사 통화<i></i></div><div class="m b">📬 밤사이 메일 23통 중 답장 필요 3통을 위에 올렸어요.<i></i></div></div>
+          <div class="tc"><span class="tt">말로 등록</span><div class="m u">매주 월요일 9시에 지난주 매출 정리해서 보내줘<i> ✓✓</i></div><div class="m b">등록했어요 ✓<br><b>매주 월 09:00</b> 주간 매출 보고<i></i></div><div class="m u">회의 녹음 회의록으로 정리해줘<i> ✓✓</i></div><div class="m b">회의록 만들고 할 일 4개는 일정에 넣었어요.<i></i></div></div>
+        </div>
+        <span class="ex-tag">※ 대화 예시</span>
+      </div>
+    </article>
+
+    <article class="stage" id="s5">
+      <div>
+        <span class="st-no">STEP 5 · 반복 업무 자동화</span>
+        <h3>세금계산서 발행, 계약서 검토…<br>반복 업무를 넘깁니다</h3>
+        <p>매달 손으로 하던 경리·법무 업무를 에이전트가 초안까지 만들고, 대표님은 확인만 하도록 바꿉니다.</p>
+        <div class="learn"><div>세금계산서 발행 초안 → 승인 후 발행 흐름</div><div>계약서 위험 조항 1차 검토와 수정 제안</div><div>견적서·발주서·업무지시서 양식 자동 작성</div></div>
+        <p class="outcome"><b>끝나면</b> — 매달 반복되는 서류 업무 2~3개가 '확인 버튼'만 남습니다.</p>
+      </div>
+      <div class="st-vis">
+        <div class="duo">
+          <div class="doc">
+            <h5>계약서 1차 검토 <span>AI 초안</span></h5>
+            <div class="ln"><i class="hi">높음</i><span>제7조 지체상금 상한이 없습니다 → 계약금액의 10% 상한 제안</span></div>
+            <div class="ln"><i class="md">보통</i><span>제11조 상대방만 30일 전 통보로 해지 가능 → 쌍방으로 수정</span></div>
+            <div class="ln"><i class="md">보통</i><span>제14조 관할 법원이 상대방 소재지 → 협의 권장</span></div>
+            <div class="ln"><i class="ok">정상</i><span>대금 지급 조건·비밀유지 조항 이상 없음</span></div>
+          </div>
+          <div class="tc"><span class="tt">세금계산서</span><div class="m u">A사 이번 달 청구분 발행 준비해줘<i> ✓✓</i></div><div class="m b">공급가 5,909,091원 · 세액 590,909원 · 합계 6,500,000원<div class="mb"><span>✓ 승인 후 발행</span><span>✎ 수정</span></div><i></i></div></div>
+        </div>
+        <span class="ex-tag">※ 예시 화면 · 법률 판단은 전문가 검토가 필요합니다</span>
+      </div>
+    </article>
+
+    <article class="stage" id="s6">
+      <div>
+        <span class="st-no adv">STEP 6 · 심화반</span>
+        <h3>대시보드를 만들고,<br>에이전트로 업무를 고도화합니다</h3>
+        <p>흩어진 매출·비용·영업 데이터를 한 화면에 모으고, 에이전트가 매일 숫자를 읽어 이상 신호와 다음 할 일을 먼저 알려 주게 만듭니다.</p>
+        <div class="learn"><div>엑셀·구글시트 데이터를 모으는 경영 대시보드 제작</div><div>매출 급감·비용 급증 같은 이상 신호 자동 알림</div><div>주간 경영 리포트 자동 발송</div></div>
+        <p class="outcome"><b>끝나면</b> — 대표님 회사 전용 경영 대시보드와 리포트 에이전트가 남습니다.</p>
+      </div>
+      <div class="st-vis">
+        <div class="browser" style="margin-top:0"><div class="bar"><i></i><i></i><i></i><span>erp · 전사 대시보드</span></div><img src="assets/erp_dash.jpg" alt="실제 운영 중인 경영 대시보드 (수치 블러 처리)" loading="lazy"></div>
+        <span class="ex-tag">※ 강사가 직접 만들어 운영 중인 실제 화면 · 수치는 블러 처리</span>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -354,86 +648,74 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <div class="wrap">
     <div class="center">
       <span class="kicker">실제 화면</span>
-      <h2 class="h2">말이 아니라, 지금 실제로 쓰고 있는 화면입니다</h2>
-      <p class="sub">저희 회사 경영 ERP와 광고주 성과 대시보드를 직접 만들어 매일 운영하고 있습니다. 같은 방식으로 귀사에 맞는 현황판을 만들어 드립니다.</p>
+      <h2 class="h2">코칭에서 만드는 것들, 이미 직접 쓰고 있습니다</h2>
+      <p class="sub">강사가 비개발자로 시작해 직접 만들어 매일 운영하는 대시보드와 자동 수집 화면입니다. 같은 방식을 대표님 회사에 맞게 알려 드립니다.</p>
     </div>
-
-    <div class="browser">
-      <div class="bar"><i></i><i></i><i></i><span>erp · 전사 대시보드</span></div>
-      <img src="assets/erp_dash.jpg" alt="사내 경영 ERP 전사 대시보드 (수치 블러 처리)" width="1440" height="900" loading="lazy">
-    </div>
-    <div class="cap"><span><b>경영 ERP · 전사 대시보드</b> — 거래처 수, 월별 매출·지출, 목표 달성률, 현금흐름을 한 화면에</span><span>※ 수치는 블러 처리</span></div>
-
     <div class="gallery">
       <article class="shot"><img src="assets/erp_deals.jpg" alt="ERP 거래 관리 화면" loading="lazy"><div><span class="tag">경영 ERP</span><br><b>거래 관리</b><p>거래별 매출·외주비·마진율·세금계산서 발행 상태를 팀별로 관리</p></div></article>
-      <article class="shot"><img src="assets/dr_report.jpg" alt="광고 성과 보고서 대시보드" loading="lazy"><div><span class="tag">광고주 대시보드</span><br><b>성과 보고서 자동 집계</b><p>전월 대비·주차별·매체별 실적을 매일 자동으로 모아 엑셀 양식 그대로</p></div></article>
-      <article class="shot"><img src="assets/dr_media.jpg" alt="매체별 성과 대시보드" loading="lazy"><div><span class="tag">광고주 대시보드</span><br><b>매체별 목표 대비 현황</b><p>매체마다 계획 대비 노출·클릭·전환·CPA를 카드로 한눈에</p></div></article>
-      <article class="shot"><img src="assets/dr_homeshop.jpg" alt="홈쇼핑 편성 모니터링 화면" loading="lazy"><div><span class="tag">자동 수집</span><br><b>홈쇼핑 편성 모니터링</b><p>하루 2회 자동 수집, 오늘·내일 방송을 먼저 알려줌</p></div></article>
-      <article class="shot" style="grid-column:1/-1"><img src="assets/dr_comp.jpg" alt="경쟁사 광고 수집 화면" loading="lazy" style="aspect-ratio:21/8"><div><span class="tag">자동 수집</span><br><b>경쟁사 광고 자동 수집</b><p>경쟁사 검색어로 메타 광고 라이브러리를 매일 아침 수집·정리</p></div></article>
+      <article class="shot"><img src="assets/dr_report.jpg" alt="광고 성과 보고서 대시보드" loading="lazy"><div><span class="tag">브랜드 대시보드</span><br><b>성과 보고서 자동 집계</b><p>전월 대비·주차별·매체별 실적을 매일 자동으로 모아 엑셀 양식 그대로</p></div></article>
+      <article class="shot"><img src="assets/dr_media.jpg" alt="매체별 성과 대시보드" loading="lazy"><div><span class="tag">브랜드 대시보드</span><br><b>매체별 목표 대비 현황</b><p>매체마다 계획 대비 노출·클릭·전환·CPA를 카드로 한눈에</p></div></article>
+      <article class="shot"><img src="assets/dr_comp.jpg" alt="경쟁사 광고 수집 화면" loading="lazy"><div><span class="tag">자동 수집</span><br><b>경쟁사 광고 자동 수집</b><p>경쟁사 검색어로 메타 광고 라이브러리를 매일 아침 수집·정리</p></div></article>
     </div>
     <p class="blurnote">※ 고객사 보호를 위해 수치·상품명·거래처명은 블러 처리했습니다.</p>
   </div>
 </section>
 
-<section class="tg" id="telegram">
-  <div class="wrap tg-grid">
-    <img src="assets/tg_mail.png" alt="텔레그램 AI 비서 메일 분류 예시" loading="lazy">
+<section class="tutor" id="tutor">
+  <div class="wrap tutor-grid">
+    <img src="assets/curtis_bw.jpg" alt="강사 최종수 (Curtis Choi)" width="900" height="1128" loading="lazy">
     <div>
-      <span class="kicker">메일 자동화</span>
-      <h2 class="h2">출근하면 휴대폰에<br>정리가 끝나 있습니다</h2>
-      <p class="sub">AI 에이전트가 밤사이 들어온 메일을 읽고, 분류하고, 필요한 문서까지 만들어 텔레그램으로 보고합니다. 대표님은 확인 버튼만 누르면 됩니다.</p>
-      <div class="flow">
-        <div><em>07:00</em><span><b>메일 자동 분류</b><p>발주·견적 요청·세금계산서·기타로 나누고 첨부파일은 폴더에 저장</p></span></div>
-        <div><em>07:05</em><span><b>견적서·작업지시서 초안</b><p>메일 속 품목·수량·납기로 우리 회사 양식 문서 자동 작성</p></span></div>
-        <div><em>07:12</em><span><b>말로 지시, 바로 발송</b><p>"B사 5% 할인해서 보내줘" 한 줄이면 수정 후 거래처로 발송</p></span></div>
-      </div>
-      <p style="margin-top:14px;font-size:13px;color:var(--mute)">※ 예시 화면입니다. 분류 기준과 보고 시간은 업체별로 설정합니다.</p>
+      <span class="kicker">강사</span>
+      <h2>최종수<small>Curtis Choi</small></h2>
+      <span class="role">(주)마인드리퍼블릭 CMO</span>
+      <ul class="cv">
+        <li>비개발자 독학으로 시작해 AI 에이전트 구축·홈페이지 구축 사례 수십 건 보유</li>
+        <li>인플루언서 마케팅 플랫폼 (주)위노아 운영</li>
+        <li>건강기능식품 브랜드 대시보드 제작·에이전트 구축 사례 다수 보유</li>
+        <li>제조업 발주서·견적서·업무지시서 등 단순 경리 업무 100% 자동화 사례 다수 보유</li>
+      </ul>
+      <p class="q">"저도 개발자가 아닙니다. 그래서 대표님이 어디서 막히는지 압니다."</p>
     </div>
   </div>
 </section>
 
-<section class="svc" id="services">
-  <div class="wrap">
-    <span class="kicker">서비스</span>
-    <h2 class="h2">업무 진단부터 장비·교육까지<br>한 번에 맡기세요</h2>
-    <p class="sub">필요한 항목만 골라 도입할 수 있습니다.</p>
-    <div class="cards">
-      <div class="card"><span class="n">01</span><h3>매일 아침<br>메일 분류 자동화</h3><p>밤사이 메일을 업무별로 분류해 급한 것부터 보고합니다.</p><ul><li>업체별 분류 기준·거래처 반영</li><li>첨부파일 자동 저장</li></ul></div>
-      <div class="card"><span class="n">02</span><h3>견적서·작업지시서·발주서<br>자동 생성 및 발송</h3><p>메일 내용으로 우리 양식 문서를 만들고 메일로 보냅니다.</p><ul><li>기존 엑셀·한글 양식 그대로</li><li>발송 전 확인 단계 유지</li></ul></div>
-      <div class="card"><span class="n">03</span><h3>업체 맞춤<br>현황 대시보드</h3><p>별도 프로그램 없이 발주·주문·매출·매입을 한 화면에서.</p><ul><li>거래처·품목별 조회</li><li>PC·휴대폰 확인</li></ul></div>
-      <div class="card"><span class="n">04</span><h3>전용 AI 에이전트 설치 + 기본 AI 교육</h3><p>우리 회사만 쓰는 AI 에이전트를 설치하고, 대표와 직원이 직접 일을 시킬 수 있도록 현장에서 교육합니다.</p><ul><li>업체 전용 계정·텔레그램 봇 연결</li><li>대표·사무직 대상 AI 활용 교육</li></ul></div>
-      <div class="card"><span class="n">05</span><h3>전용 PC·모니터 제공</h3><p>AI 직원이 24시간 일할 맥미니(윈도우 환경은 미니PC)와 모니터를 준비해 설치까지 마칩니다.</p><ul><li>기존 공유 폴더·프린터 연결</li><li>상시 가동 전원·절전 설정</li></ul><p class="x">※ 장비 비용은 컨설팅 견적과 별도 실비 청구</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="proc" id="process">
+<section class="fee" id="price">
   <div class="wrap">
     <div class="center">
-      <span class="kicker">진행 방식</span>
-      <h2 class="h2">진단에서 운영까지 4단계</h2>
+      <span class="kicker">수강료</span>
+      <h2 class="h2">1회 5시간, 대표님 사무실로 찾아갑니다</h2>
+      <p class="sub">인원과 횟수를 골라 바로 결제할 수 있습니다. 일정은 결제 후 상담으로 확정합니다.</p>
     </div>
-    <div class="steps">
-      <div class="step"><small>STEP 1</small><h4>업무 진단</h4><p>실시간 채팅·이메일 상담으로 메일·문서·관리 방식을 듣고 자동화할 업무 순서를 정합니다.</p></div>
-      <div class="step"><small>STEP 2</small><h4>설계·견적</h4><p>업체 양식과 거래처 구조에 맞춘 자동화 설계안과 견적을 드립니다.</p></div>
-      <div class="step"><small>STEP 3</small><h4>설치·교육</h4><p>전용 PC에 에이전트를 설치하고 메일·폴더를 연결한 뒤 사용법을 교육합니다.</p></div>
-      <div class="step"><small>STEP 4</small><h4>운영 지원</h4><p>실제 업무에 쓰면서 나오는 수정 요청을 반영해 안정화합니다.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="price" id="price">
-  <div class="wrap pbox">
-    <div>
-      <span class="kicker">비용</span>
-      <h3>업무 진단 후 맞춤 견적</h3>
-      <p>회사마다 메일 양, 문서 양식, 거래처 수가 달라 업무 진단 상담으로 범위를 확인한 뒤 견적을 드립니다.</p>
-    </div>
-    <div>
-      <div class="prow"><span>업무 진단</span><span>실시간 채팅·이메일 상담</span></div>
-      <div class="prow"><span>자동화 대시보드</span><span>견적</span></div>
-      <div class="prow"><span>기본 AI 교육</span><span>견적 포함</span></div>
-      <div class="prow"><span>AI 사용료<small class="pnote">사용량별 별도 · 기본 Pro 모델 구입 시 월 3~5만 원 내외</small></span><span>소비자 부담</span></div>
+    <div class="fee-grid">
+      <div class="fee-main">
+        <span class="kicker" style="margin:0">1인 · 1회 (5시간)</span>
+        <div class="big">1,000,000원<small>부가세 별도</small></div>
+        <ul>
+          <li>대표님 사무실 방문 1:1 코칭</li>
+          <li>경영진 2인 동반(2:1) 시 공급가 20% 할인</li>
+          <li>1~4회 선택 · 회차에 맞춰 6단계 커리큘럼 구성</li>
+          <li>카드·간편결제 / 실시간 계좌이체 / 가상계좌</li>
+          <li>현금영수증 또는 세금계산서 발행</li>
+        </ul>
+        <div class="plan">
+          <div><small>입문 · 1회</small><b>STEP 1~2</b><p>AI 이해 + 바이브코딩 첫 도구</p></div>
+          <div><small>실무 · 3회</small><b>STEP 1~5</b><p>AI 비서 + 반복 업무 자동화</p></div>
+          <div><small>심화 · 4회</small><b>STEP 1~6</b><p>대시보드·업무 고도화까지</p></div>
+        </div>
+        <p style="font-size:12.5px;color:var(--mute);margin-top:10px">※ 회차별 구성은 예시이며, 상담 후 회사 상황에 맞춰 조정합니다.</p>
+      </div>
+      <div class="fee-calc">
+        <h4>총 결제금액 (부가세 10% 포함)</h4>
+        <table>
+          <tr><th>횟수</th><th>1인</th><th>2인 (2:1 · 20%↓)</th></tr>
+          <tr><td>1회</td><td>1,100,000원</td><td class="b">1,760,000원</td></tr>
+          <tr><td>2회</td><td>2,200,000원</td><td class="b">3,520,000원</td></tr>
+          <tr><td>3회</td><td>3,300,000원</td><td class="b">5,280,000원</td></tr>
+          <tr><td>4회</td><td>4,400,000원</td><td class="b">7,040,000원</td></tr>
+        </table>
+        <p class="n">2인은 두 분 합계 금액입니다. 본인 자리만(1인) 결제할 수도 있습니다.<br>AI 서비스 이용료(클로드·GPT 등 구독료)는 별도입니다.</p>
+        <a class="btn btn-p" href="checkout.html">수강 신청 · 결제하기 →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -442,11 +724,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <div class="wrap">
     <div class="center"><span class="kicker">FAQ</span><h2 class="h2">자주 묻는 질문</h2></div>
     <div class="qa">
-      <details><summary>컴퓨터를 잘 몰라도 쓸 수 있나요?</summary><p>텔레그램으로 말하듯 요청하면 됩니다. 설치와 설정은 저희가 하고, 사용법은 현장 교육으로 알려드립니다.</p></details>
-      <details><summary>얼마에요 같은 기존 프로그램은 어떻게 하나요?</summary><p>그대로 쓰셔도 되고 대시보드로 대체하셔도 됩니다. 기존 데이터 이전이 필요한지는 진단 때 확인해 안내드립니다.</p></details>
-      <details><summary>윈도우 PC만 있어도 되나요?</summary><p>가능합니다. 윈도우 환경이면 미니PC로, 그 외에는 맥미니로 구성하고 기존 공유 폴더·프린터도 연결합니다.</p></details>
-      <details><summary>AI가 메일을 마음대로 보내지는 않나요?</summary><p>거래처로 나가는 메일과 문서는 담당자가 확인 버튼을 눌러야 발송되도록 설정하는 것이 기본입니다. 자동 발송 범위는 업체가 정합니다.</p></details>
-      <details><summary>회사 자료는 안전한가요?</summary><p>에이전트는 업체 전용 PC와 전용 계정으로 따로 운영됩니다. 문서 작성 시 AI 서비스로 내용이 전송되는 구조와 보안 설정은 상담 때 자세히 설명드립니다.</p></details>
+      <details><summary>컴퓨터를 잘 못 다뤄도 들을 수 있나요?</summary><p>네. 개발 지식은 필요 없습니다. 노트북 하나만 준비해 주시면 설치부터 함께 합니다.</p></details>
+      <details><summary>직원 교육으로도 진행할 수 있나요?</summary><p>이 과정은 대표·경영진 대상입니다. 직원 교육이 필요하면 상담 때 말씀해 주세요. 별도로 구성해 안내드립니다.</p></details>
+      <details><summary>회사 자료를 AI에 넣어도 안전한가요?</summary><p>STEP 1에서 AI 서비스별 데이터 처리 방식과 지켜야 할 보안 원칙을 먼저 다룹니다. 민감한 자료는 실습에서 가상 데이터로 대체할 수 있습니다.</p></details>
+      <details><summary>AI 서비스 비용이 따로 드나요?</summary><p>클로드·챗GPT 등 유료 구독이 필요한 경우가 있습니다. 보통 월 몇만 원 수준이며, 코칭 전에 필요한 항목을 안내드립니다.</p></details>
+      <details><summary>코칭이 끝난 뒤에도 도움을 받을 수 있나요?</summary><p>실습 중 만든 비서·도구 사용법은 코칭 때 정리해 드립니다. 추가 구축이 필요하면 상담으로 별도 견적을 드립니다.</p></details>
     </div>
   </div>
 </section>
@@ -455,21 +737,22 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <div class="wrap">
     <div class="cbox">
       <div>
-        <h2>우리 회사는 어디부터<br>자동화할 수 있을까요?</h2>
-        <p>실시간 채팅이나 이메일로 편하게 문의하세요. 지금 하시는 일을 듣고 자동화 순서부터 알려드립니다.</p>
+        <h2>우리 회사는<br>어디부터 시작하면 될까요?</h2>
+        <p>수강 전 궁금한 점은 실시간 채팅이나 이메일로 편하게 물어보세요. 지금 하시는 일을 듣고 맞는 단계부터 안내드립니다.</p>
       </div>
       <div class="clist">
         <a href="#contact" data-chat class="chatbtn">💬 실시간 채팅 상담 <span>바로 연결</span></a>
-        <a href="mailto:dhdnrj12@naver.com?subject=%5BAI%20%EC%97%85%EB%AC%B4%20%EC%9E%90%EB%8F%99%ED%99%94%5D%20%EC%83%81%EB%8B%B4%20%EB%AC%B8%EC%9D%98">이메일 문의 <span>dhdnrj12@naver.com</span></a>
+        <a href="checkout.html">수강 신청 · 결제 <span>바로 가기</span></a>
+        <a href="mailto:dhdnrj12@naver.com?subject=%5BAI%20%EA%B2%BD%EC%98%81%EC%A7%84%20%EC%BD%94%EC%B9%AD%5D%20%EB%AC%B8%EC%9D%98">이메일 문의 <span>dhdnrj12@naver.com</span></a>
       </div>
     </div>
   </div>
 </section>
 </main>
 
-<footer><div class="wrap"><span>AI 업무 자동화 컨설팅 · 이메일 dhdnrj12@naver.com</span><span>© 2026</span></div></footer>
+<footer><div class="wrap"><span>AI 업무 자동화 경영진 코칭 · 강사 최종수 · 이메일 dhdnrj12@naver.com</span><span>© 2026</span></div></footer>
 
-<div class="mbar"><a class="btn btn-g" href="mailto:dhdnrj12@naver.com?subject=%5BAI%20%EC%97%85%EB%AC%B4%20%EC%9E%90%EB%8F%99%ED%99%94%5D%20%EC%83%81%EB%8B%B4%20%EB%AC%B8%EC%9D%98">메일 문의</a><a class="btn btn-p" href="#contact" data-chat>💬 채팅 상담</a></div>
+<div class="mbar"><a class="btn btn-g" href="#contact" data-chat>💬 채팅 상담</a><a class="btn btn-p" href="checkout.html">수강 신청</a></div>
 <script>
 (()=>{const S=[...document.querySelectorAll('.sl')],D=[...document.querySelectorAll('.dot')],box=document.getElementById('slider');let i=0,tm;
 function go(n){i=(n+S.length)%S.length;S.forEach((s,k)=>s.classList.toggle('on',k===i));D.forEach((d,k)=>{d.classList.toggle('on',k===i);});D[i].querySelector('i').replaceWith(Object.assign(document.createElement('i')));reset();}

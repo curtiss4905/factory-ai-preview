@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 업무 자동화 경영진 코칭 — 수강료 결제</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin="">
+<link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<!-- 토스페이먼츠 v2 표준 SDK -->
+<script src="https://js.tosspayments.com/v2/standard"></script>
+<style>
+:root{
+  --bg:#F8FAFD; --surface:#fff; --surface-warm:#FBFCFE;
+  --fg:#0D1738; --fg-2:#334155; --muted:#64748D;
+  --border:#E5EDF5; --border-2:#D4DEE9;
+  --accent:#533AFD; --accent-700:#4032C8; --danger:#F3432A;
+  --font:"Pretendard Variable","Pretendard",-apple-system,system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg); color:var(--fg); font-family:var(--font);
+  -webkit-font-smoothing:antialiased; line-height:1.5; padding:32px 18px 64px}
+.wrap{max-width:520px; margin:0 auto}
+.back{display:inline-flex; align-items:center; gap:6px; font-size:13.5px; color:var(--muted);
+  text-decoration:none; margin-bottom:18px}
+.back:hover{color:var(--accent)}
+.brandline{font-size:13px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:10px}
+h1{font-size:27px; font-weight:800; letter-spacing:-.03em; margin-bottom:6px}
+.sub{font-size:15px; color:var(--muted); margin-bottom:24px}
+.card{background:var(--surface); border:1px solid var(--border);
+  border-radius:18px; padding:24px; margin-bottom:18px; box-shadow:0 6px 22px #0037700F}
+.order-row{display:flex; justify-content:space-between; align-items:baseline; padding:8px 0; gap:16px}
+.order-row .k{font-size:15px; color:var(--muted)}
+.order-row .v{font-size:16px; font-weight:600; color:var(--fg-2); text-align:right}
+.order-row.total{border-top:1px solid var(--border); margin-top:8px; padding-top:16px}
+.order-row.total .k{font-size:16px; color:var(--fg); font-weight:600}
+.order-row.total .v{font-size:26px; font-weight:800; letter-spacing:-.02em; color:var(--accent);
+  font-variant-numeric:tabular-nums}
+.hint-2to1{font-size:12.5px; color:var(--muted); margin-top:10px; line-height:1.55;
+  background:#F5F5FF; border:1px solid #E8E9FF; border-radius:10px; padding:10px 12px}
+.field{margin-bottom:14px}
+.field:last-child{margin-bottom:0}
+.field label{display:block; font-size:13.5px; font-weight:600; color:var(--fg-2); margin-bottom:7px}
+.field .opt{font-weight:400; color:var(--muted)}
+.field input{width:100%; font-family:var(--font); font-size:16px; color:var(--fg);
+  background:var(--surface-warm); border:1px solid var(--border-2); border-radius:12px;
+  padding:13px 15px; outline:none}
+.field input:focus{border-color:var(--accent); background:#fff; box-shadow:0 0 0 3px rgba(83,58,253,.13)}
+.field-hint{font-size:12.5px; color:var(--muted); margin-top:6px; line-height:1.5}
+.pay-btn{width:100%; margin-top:4px; padding:17px; font-family:var(--font); font-size:18px;
+  font-weight:700; color:#fff; background:var(--accent); border:0; border-radius:14px;
+  cursor:pointer; box-shadow:0 10px 26px rgba(83,58,253,.30); transition:opacity .15s}
+.pay-btn:hover{opacity:.93}
+.pay-btn:disabled{opacity:.5; cursor:not-allowed; box-shadow:none}
+.method-hint{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted);
+  margin:14px 0 2px}
+.method-hint b{color:var(--fg-2); font-weight:600}
+.note{font-size:12.5px; color:var(--muted); text-align:center; margin-top:16px; line-height:1.6}
+.sel-block{margin-bottom:16px}
+.sel-block > .sl{display:block; font-size:13.5px; font-weight:600; color:var(--fg-2); margin-bottom:8px}
+.seg{display:flex; gap:8px; flex-wrap:wrap}
+/* word-break:keep-all — 한글은 기본값(break-word 성향)이면 단어 중간에서 잘려
+   "실시간 계좌이/체" 처럼 마지막 글자만 다음 줄로 밀린다. 어절 단위로만 줄바꿈. */
+.seg button{flex:1 1 0; min-width:64px; font-family:var(--font); font-size:15px; font-weight:600;
+  color:var(--fg-2); background:var(--surface-warm); border:1px solid var(--border-2);
+  border-radius:11px; padding:11px 8px; cursor:pointer; transition:all .12s; word-break:keep-all}
+.seg button:hover{border-color:var(--accent)}
+.seg button.on{background:var(--accent); color:#fff; border-color:var(--accent)}
+/* 결제수단 라벨은 한글 4~8자라, 좁은 화면에서 3열로 두면 카드 폭(≈82px)보다 넓어 두 줄이 된다.
+   인원(1인/2인)·횟수(1~4회)·증빙(5자)은 짧아 3열이 유지되므로 #seg-method만 세로로 쌓는다
+   (한 줄 표기 + 터치 영역 확대. 토스 결제창 자체도 모바일에서 수단을 세로로 나열한다). */
+@media (max-width:480px){
+  #seg-method{display:grid; grid-template-columns:1fr}
+  #seg-method button{width:100%}
+}
+.vatnote{font-size:12px; color:var(--muted); margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← 코칭 소개로</a>
+  <div class="brandline">AI Automation · Executive Coaching</div>
+  <h1>수강료 결제</h1>
+  <p class="sub">인원과 횟수를 선택하고 결제해 주세요.</p>
+
+  <div class="card">
+    <div class="order-row"><span class="k">과정</span><span class="v">AI 업무 자동화 경영진 방문 코칭 (1회 5시간)</span></div>
+
+    <div class="sel-block" style="margin-top:14px">
+      <span class="sl">수강 인원</span>
+      <div class="seg" id="seg-people">
+        <button type="button" data-val="1" class="on">1인</button>
+        <button type="button" data-val="2">2인 (2:1)</button>
+      </div>
+    </div>
+    <div class="sel-block">
+      <span class="sl">횟수 <span class="opt" style="font-weight:400;color:var(--muted)">(1회 = 하루 5시간)</span></span>
+      <div class="seg" id="seg-sessions">
+        <button type="button" data-val="1" class="on">1회</button>
+        <button type="button" data-val="2">2회</button>
+        <button type="button" data-val="3">3회</button>
+        <button type="button" data-val="4">4회</button>
+      </div>
+    </div>
+
+    <div class="order-row"><span class="k">단가 (1인 · 1회)</span><span class="v">1,000,000원 <span style="font-weight:400;color:var(--muted);font-size:13px">(부가세 별도)</span></span></div>
+    <div class="order-row"><span class="k">수량</span><span class="v" id="qty-label">1인 × 1회</span></div>
+    <div class="order-row"><span class="k">공급가</span><span class="v" id="row-supply">1,000,000원</span></div>
+    <div class="order-row" id="row-discount-wrap" style="display:none"><span class="k">2인 동반 할인 (20%)</span><span class="v" id="row-discount" style="color:var(--accent)">-0원</span></div>
+    <div class="order-row"><span class="k">부가세 (10%)</span><span class="v" id="row-vat">100,000원</span></div>
+    <div class="order-row total"><span class="k">총 결제금액</span><span class="v" id="total-label">1,100,000원</span></div>
+    <div class="vatnote"><b>부가세 10% 포함</b> 결제금액입니다. 2인 동반 시 공급가에서 20% 할인이 적용됩니다.</div>
+    <div class="hint-2to1" style="margin-top:12px">2:1 코칭은 대표·경영진 두 분이 함께 진행합니다. 두 자리를 함께 결제(2인)하거나 본인 자리만 결제(1인)할 수 있어요. 방문 일정과 회차별 커리큘럼(STEP 1~6)은 <b>신청 후 상담으로 확정</b>합니다.</div>
+  </div>
+
+  <div class="card">
+    <div class="field">
+      <label for="cust-co">회사명</label>
+      <input id="cust-co" type="text" autocomplete="organization" placeholder="(주)회사명">
+    </div>
+    <div class="field">
+      <label for="cust-name">신청자 이름 · 직함</label>
+      <input id="cust-name" type="text" autocomplete="name" placeholder="홍길동 대표" required aria-describedby="cust-err">
+    </div>
+    <div class="field">
+      <label for="cust-email">이메일 <span class="opt">(영수증 수신)</span></label>
+      <input id="cust-email" type="email" autocomplete="email" placeholder="name@example.com" required aria-describedby="cust-err">
+    </div>
+    <div class="field">
+      <label for="cust-phone">연락처 <span class="opt">(일정 조율 안내)</span></label>
+      <input id="cust-phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000" required aria-describedby="cust-err">
+    </div>
+    <div id="cust-err" role="alert" aria-live="polite" style="font-size:13px; color:#d92d20; margin-top:8px; display:none"></div>
+    <div class="sel-block" style="margin-top:16px">
+      <span class="sl">결제수단</span>
+      <div class="seg" id="seg-method">
+        <button type="button" data-method="CARD" class="on">카드 · 간편결제</button>
+        <button type="button" data-method="TRANSFER">실시간 계좌이체</button>
+        <button type="button" data-method="VIRTUAL_ACCOUNT">가상계좌</button>
+      </div>
+    </div>
+    <div class="method-hint" id="method-hint">💳 <span><b>카드</b> · 간편결제(토스페이 등)로 결제할 수 있어요</span></div>
+
+    <!-- 증빙: 계좌이체·가상계좌(현금성 결제)일 때만 노출. 개인=현금영수증 / 사업자=세금계산서 택1(중복발행 불가). -->
+    <div class="sel-block" id="receipt-block" style="display:none; margin-top:16px">
+      <span class="sl">증빙 <span class="opt" style="font-weight:400;color:var(--muted)">(계좌이체·가상계좌 · 택1)</span></span>
+      <div class="seg" id="seg-receipt">
+        <button type="button" data-receipt="cashreceipt" class="on">현금영수증</button>
+        <button type="button" data-receipt="taxinvoice">세금계산서</button>
+      </div>
+      <div class="method-hint" id="receipt-hint">🧾 <span><b>현금영수증</b> — 결제창에서 휴대폰번호(소득공제)를 입력하면 국세청에 자동 발행됩니다.</span></div>
+      <div id="biz-form" style="display:none; margin-top:6px">
+        <div class="field"><label>사업자등록번호</label><input id="biz-num" type="text" inputmode="numeric" placeholder="000-00-00000"></div>
+        <div class="field"><label>상호(회사명)</label><input id="biz-name" type="text" placeholder="(주)회사명"></div>
+        <div class="field"><label>대표자명</label><input id="biz-ceo" type="text" placeholder="홍길동"></div>
+        <div class="field"><label>세금계산서 수신 이메일</label><input id="biz-email" type="email" placeholder="tax@company.com"></div>
+        <div class="field"><label>사업장 주소 <span class="opt">(선택)</span></label><input id="biz-addr" type="text" placeholder="서울특별시 …"></div>
+        <div class="field"><label>업태 <span class="opt">(선택)</span></label><input id="biz-type" type="text" placeholder="서비스"></div>
+        <div class="field"><label>종목 <span class="opt">(선택)</span></label><input id="biz-class" type="text" placeholder="교육"></div>
+        <div id="biz-err" style="font-size:13px; color:#d92d20; margin-top:8px; display:none"></div>
+      </div>
+    </div>
+
+    <button class="pay-btn" id="payment-button" disabled>1,000,000원 카드로 결제하기</button>
+  </div>
+
+  <div id="prep" class="card" style="display:none"></div>
+  <p class="note">결제는 토스페이먼츠를 통해 안전하게 처리됩니다.<br>
+    문의 — dhdnrj12@naver.com</p>
+</div>
+
+<script>
+(function(){
+  // ── 결제 설정 ─────────────────────────────────────────────
+  // 토스페이먼츠 라이브 클라이언트 키(live_ck_...)를 넣으면 실제 결제창이 열립니다.
+  // 비워 두면 '신청 접수' 모드: 주문 내용을 채팅/메일로 보내고 결제 링크를 회신합니다.
+  var TOSS_CLIENT_KEY = "";
+  var UNIT_PRICE = 1000000, VAT_RATE = 0.1, PAIR_DISCOUNT_RATE = 0.2;   // class.mindrepublic.ai.kr 과 동일
+  var people = 1, sessions = 1, method = "CARD", receipt = "cashreceipt";
+  var METHOD_META = {
+    CARD:{verb:"카드로 결제하기",icon:"💳",b:"카드",r:" · 간편결제(토스페이 등)로 결제할 수 있어요"},
+    TRANSFER:{verb:"계좌이체로 결제하기",icon:"🏦",b:"실시간 계좌이체",r:" — 은행 앱/인증으로 바로 승인됩니다 (카드 없이 결제)"},
+    VIRTUAL_ACCOUNT:{verb:"가상계좌로 결제하기",icon:"🏧",b:"가상계좌",r:" — 발급된 계좌로 48시간 내 입금하면 결제가 완료돼요"}};
+  var RECEIPT_META = {
+    cashreceipt:{b:"현금영수증",r:" — 결제창에서 휴대폰번호(소득공제)를 입력하면 국세청에 자동 발행됩니다."},
+    taxinvoice:{b:"세금계산서",r:" — 결제(입금) 완료 후 발행되어 수신 이메일로 전달됩니다."}};
+  var $ = function(id){ return document.getElementById(id); };
+  function hint(el, icon, b, r){ el.textContent=""; var i=document.createElement("span"); i.textContent=icon; var t=document.createElement("span"); var bb=document.createElement("b"); bb.textContent=b; t.appendChild(bb); t.appendChild(document.createTextNode(r)); el.appendChild(i); el.appendChild(t); }
+  function isCash(){ return method==="TRANSFER"||method==="VIRTUAL_ACCOUNT"; }
+  function won(n){ return n.toLocaleString("ko-KR")+"원"; }
+  function bd(){ var s=UNIT_PRICE*people*sessions, d=people===2?Math.round(s*PAIR_DISCOUNT_RATE):0, v=Math.round((s-d)*VAT_RATE); return {supply:s,discount:d,vat:v,total:s-d+v}; }
+  function orderName(){ return "AI 경영진 코칭 "+people+"인 × "+sessions+"회"; }
+  function refresh(){
+    var b=bd(); $("qty-label").textContent=people+"인 × "+sessions+"회"; $("row-supply").textContent=won(b.supply);
+    $("row-discount-wrap").style.display=b.discount?"":"none"; $("row-discount").textContent="-"+won(b.discount);
+    $("row-vat").textContent=won(b.vat); $("total-label").textContent=won(b.total);
+    $("payment-button").textContent=won(b.total)+" "+(TOSS_CLIENT_KEY?METHOD_META[method].verb:"수강 신청하기");
+    hint($("method-hint"),METHOD_META[method].icon,METHOD_META[method].b,METHOD_META[method].r);
+    $("receipt-block").style.display=isCash()?"":"none";
+    $("biz-form").style.display=(isCash()&&receipt==="taxinvoice")?"":"none";
+    hint($("receipt-hint"),"🧾",RECEIPT_META[receipt].b,RECEIPT_META[receipt].r);
+  }
+  function seg(id, attr, fn){ var s=$(id); s.addEventListener("click",function(e){ var b=e.target.closest("button["+attr+"]"); if(!b) return; [].forEach.call(s.querySelectorAll("button"),function(x){x.classList.remove("on");}); b.classList.add("on"); fn(b.getAttribute(attr)); refresh(); }); }
+  seg("seg-people","data-val",function(v){people=+v;}); seg("seg-sessions","data-val",function(v){sessions=+v;});
+  seg("seg-method","data-method",function(v){method=v;}); seg("seg-receipt","data-receipt",function(v){receipt=v;});
+  refresh(); $("payment-button").disabled=false;
+
+  function val(id){ var e=$(id); return e?e.value.trim():""; }
+  function summary(){
+    var b=bd(), lines=["[AI 경영진 코칭 수강 신청]","회사: "+(val("cust-co")||"-"),"신청자: "+val("cust-name"),"이메일: "+val("cust-email"),"연락처: "+val("cust-phone"),
+      "구성: "+people+"인 × "+sessions+"회 (1회 5시간 방문)","공급가: "+won(b.supply)+(b.discount?" / 2인 할인 -"+won(b.discount):""),"부가세: "+won(b.vat),"총 결제금액: "+won(b.total),
+      "결제수단: "+METHOD_META[method].b+(isCash()?" / 증빙: "+RECEIPT_META[receipt].b:"")];
+    if(isCash()&&receipt==="taxinvoice") lines.push("사업자: "+val("biz-num")+" "+val("biz-name")+" / 대표 "+val("biz-ceo")+" / "+val("biz-email"));
+    return lines.join("\n");
+  }
+  function check(){
+    var err=$("cust-err"), msg="";
+    if(!val("cust-name")) msg="신청자 이름을 입력해 주세요.";
+    else if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val("cust-email"))) msg="이메일을 정확히 입력해 주세요.";
+    else if(val("cust-phone").replace(/\D/g,"").length<9) msg="연락처를 입력해 주세요.";
+    else if(isCash()&&receipt==="taxinvoice"&&(!val("biz-num")||!val("biz-name")||!val("biz-email"))) msg="세금계산서 정보(사업자번호·상호·수신 이메일)를 입력해 주세요.";
+    err.textContent=msg; err.style.display=msg?"":"none"; return !msg;
+  }
+  $("payment-button").addEventListener("click", async function(){
+    if(!check()) return;
+    if(TOSS_CLIENT_KEY){
+      var b=bd(), d=new Date(), oid="EXC"+d.toISOString().slice(0,10).replace(/-/g,"")+Math.random().toString(36).slice(2,10);
+      var p=TossPayments(TOSS_CLIENT_KEY).payment({customerKey:TossPayments.ANONYMOUS});
+      var req={method:method,amount:{currency:"KRW",value:b.total},orderId:oid,orderName:orderName(),customerName:val("cust-name"),customerEmail:val("cust-email"),
+        customerMobilePhone:val("cust-phone").replace(/\D/g,""),successUrl:location.href.replace(/checkout\.html.*$/,"success.html"),failUrl:location.href.replace(/checkout\.html.*$/,"fail.html")};
+      if(method==="VIRTUAL_ACCOUNT") req.virtualAccount={validHours:48,cashReceipt:{type:receipt==="cashreceipt"?"소득공제":"미발행"}};
+      try{ await p.requestPayment(req); }catch(e){ $("cust-err").textContent=e.message||"결제창을 열지 못했습니다."; $("cust-err").style.display=""; }
+      return;
+    }
+    // 신청 접수 모드
+    var s=summary(), box=$("prep");
+    box.style.display=""; box.innerHTML="";
+    var h=document.createElement("h3"); h.textContent="신청 내용을 보내 주세요"; h.style.cssText="font-size:19px;font-weight:800;margin-bottom:6px";
+    var p1=document.createElement("p"); p1.style.cssText="font-size:14px;color:var(--muted);margin-bottom:14px"; p1.textContent="아래 버튼으로 신청 내용을 보내 주시면, 일정 확인 후 결제 링크(토스페이먼츠)를 바로 보내 드립니다.";
+    var pre=document.createElement("pre"); pre.textContent=s; pre.style.cssText="white-space:pre-wrap;font-family:var(--font);font-size:13.5px;background:var(--surface-warm);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px;color:var(--fg-2)";
+    var b1=document.createElement("button"); b1.className="pay-btn"; b1.textContent="💬 채팅으로 신청 보내기";
+    b1.onclick=function(){ try{ ChannelIO('openChat', undefined, s); }catch(e){ ChannelIO('showMessenger'); } };
+    var b2=document.createElement("a"); b2.className="pay-btn"; b2.textContent="✉️ 이메일로 신청 보내기"; b2.style.cssText="display:block;text-align:center;text-decoration:none;margin-top:10px;background:#fff;color:var(--accent);border:1px solid var(--accent);box-shadow:none";
+    b2.href="mailto:dhdnrj12@naver.com?subject="+encodeURIComponent("[AI 경영진 코칭] 수강 신청 - "+(val("cust-co")||val("cust-name")))+"&body="+encodeURIComponent(s);
+    box.appendChild(h); box.appendChild(p1); box.appendChild(pre); box.appendChild(b1); box.appendChild(b2);
+    box.scrollIntoView({behavior:"smooth",block:"start"});
+  });
+})();
+</script>
+<script>
+(function(){var w=window;if(w.ChannelIO){return;}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+ChannelIO('boot',{"pluginKey":"d1166f84-341a-4344-b7e1-39cf342c6913","mobileMessengerMode":"iframe"});
+</script>
+</body>
+</html>
